@@ -4,9 +4,10 @@
 }
 
 
+<!----<form id="registrationForm" onsubmit="return false">-->
 
-@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-{
+    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+        {
     @Html.AntiForgeryToken()
     <section class="checkout">
         <div class="container">
@@ -17,34 +18,35 @@
                         <h5>Register</h5>
                         <hr class="separator">
                     </div>
-                    @Html.ValidationSummary("", new { @class = "text-danger" })
-                    <div class="col-lg-6 ">
+                    @*@Html.ValidationSummary("", new { @class = "text-danger" })*@
+                    <div class="col-lg-4">
                         <label>Email</label>
                     </div>
-                    <div class="col-lg-6 ">
-                        @Html.TextBoxFor(m => m.Email, new { @class = "input-text", placeholder = "Email" })
+                    <div class="col-lg-8">
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Email" })
+                        @Html.ValidationMessageFor(m => m.Email, "")
 
                     </div>
-                    <div class="col-lg-6">
+                    <div class="col-lg-4">
                         <label>Password</label>
                     </div>
-                    <div class="col-lg-6">
-                        @Html.PasswordFor(m => m.Password, new { @class = "input-text", placeholder = "Password" })
-
+                    <div class="col-lg-8">
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Password" })
+                        @Html.ValidationMessageFor(m => m.Password, "")
                     </div>
-                    <div class="col-lg-6">
+                    <div class="col-lg-4">
                         <label>Confirm Password</label>
                     </div>
-                    <div class="col-lg-6">
+                    <div class="col-lg-8">
 
-                        @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "input-text", placeholder = "Confirm Password" })
-
+                        @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", placeholder = "Confirm Password" })
+                        @Html.ValidationMessageFor(m => m.ConfirmPassword, "")
                     </div>
-                    <div class="col-lg-6">
+                    <div class="col-lg-4">
                         <label>Register as</label>
                     </div>
-                    <div class="col-lg-6">
-                        @Html.DropDownList("Name")
+                    <div class="col-lg-8">
+                        @Html.DropDownList("Name", (IEnumerable<SelectListItem>)ViewBag.Name, new { @class = "form-control"})
 
 
                     </div>
@@ -52,26 +54,26 @@
                         <h3>Terms and Conditions</h3><br />
 
                         <p>Do you accept the terms and conditions of our <a href="/Home/Policy"><b style="color:#257780"> Privacy Policy</b></a> and our <a href="/Home/UserAggreement"><b style="color:#257780">User Aggreement Policy.</b></a><input type="checkbox" id="Agreement" name="agr" value="agr"></p>
-                    </div>           
+                    </div>
 
 
-                    
-                
+
+
                 </div>
-           
+
 
             </div>
 
-            </div>
+        </div>
         <div class="col-md-6 mr-auto text-center mt40 mb40">
-            <button type="submit" id="submit" class="btn btn-lg btn-primary btn-square btn-appear" value="Register">Register</button>
+            <button id="submit" class="btn btn-lg btn-primary btn-square btn-appear" value="Register">Register</button> <a href="Login" id="submit" class="btn btn-lg btn-warning btn-square btn-appear">Login</a>
             <div />
         </div>
 
-    
-            </section>
-}
-                
+
+    </section>
+    }
+<!---</form>   -->            
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
@@ -93,7 +95,39 @@ else
 
 }
 
-});
+  });
+
+  $(document).ready(function () {
+
+      $("#submit").click(function () {
+          
+          var registrationForm = $("#registrationForm");
+          var formData = $("#registrationForm").serialize();
+
+          //if ($("#registrationForm").valid()) {
+          //    return false;
+          //}
+          debugger;
+
+          $.ajax({
+              type: "POST",
+              url: "/Account/Register",
+              data: formData,
+              success: function (response) {
+                  /*$.each(response, function (index, value) {
+                      toastr.success(response.toString());
+                  });*/
+                  //toastr.success(response.toString());
+                  
+                  
+              }
+
+          })
+      })
+      //registrationForm
+     
+
+  });
 
 
 </script>

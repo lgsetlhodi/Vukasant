@@ -14,3 +14,33 @@
     font-style: normal;
 
 }
+
+
+
+
+/*.input-validation-error {
+    border-style: solid;
+    border-width: 5px;
+}*/
+
+.field-validation-error {
+    color: #b10000;
+    font-size: 12px;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+.form-control.input-validation-error {
+    border: 1px solid #b10000;
+}
+
+.validation-summary-errors {
+    font-weight: bold;
+    color: #ff0000;
+}
+
+.validation-summary-valid {
+    display: none;
+}

@@ -20,8 +20,9 @@ namespace IQRecruitmentTool.Controllers
         // GET: Innovation
         public ActionResult Index()
         {
-            var userId = new Guid("AD350B67-86E3-4AFD-955F-1315B111EAFD");//User.Identity.GetUserId();
-          
+            var userId = new Guid("AD350B67-86E3-4AFD-955F-1315B111EAFD");
+            //var userId = new Guid(User.Identity.GetUserId());
+
             var userIdeas = new IdeasDto();
     
             IdeasViewModel ivm = new IdeasViewModel();
@@ -67,7 +68,9 @@ namespace IQRecruitmentTool.Controllers
 
         public ActionResult CreateRequest(IdeasDto.RequestDto requestobj)
         {
-            var userId = new Guid("FB944136-E6ED-4D6F-8481-A83C427AF132");  //User.Identity.GetUserId();
+            //var userId = new Guid(User.Identity.GetUserId());
+            var userId = new Guid("AD350B67-86E3-4AFD-955F-1315B111EAFD");
+
             var message = "";
 
             var foundRequest = new IdeasDto().GetIdeaRequest().FirstOrDefault(i => i.IdeaRequesterId== userId && i.IdeasId == requestobj.IdeaId);
@@ -89,7 +92,7 @@ namespace IQRecruitmentTool.Controllers
             var foundRoute = route.GetIdeaRoutes().FirstOrDefault(r => r.StepNo == 1 && r.RequestType == requestobj.Action);
 
 
-            if (requestobj.Action == "Collaborate")
+            if (requestobj.Action == RequestType.Collaborate)
             {
                 if (foundRoute != null)
                 {
@@ -106,7 +109,7 @@ namespace IQRecruitmentTool.Controllers
                
             }
 
-            if (requestobj.Action == "Fund")
+            if (requestobj.Action == RequestType.Fund)
             {
                 if (foundRoute != null)
                 {
@@ -127,7 +130,7 @@ namespace IQRecruitmentTool.Controllers
         public ActionResult SearchIdeas(string searchTerm)
         {
             var userId = new Guid("AD350B67-86E3-4AFD-955F-1315B111EAFD");
-
+            //var userId = new Guid(User.Identity.GetUserId());
 
             if (searchTerm != null)
              {

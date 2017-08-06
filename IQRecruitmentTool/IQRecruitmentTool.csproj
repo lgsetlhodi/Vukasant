@@ -488,6 +488,7 @@
     <Compile Include="Models\RemunerationType.cs">
       <DependentUpon>Recruitment.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\RequestType.cs" />
     <Compile Include="Models\StorageCompany.cs">
       <DependentUpon>Recruitment.tt</DependentUpon>
     </Compile>
@@ -828,6 +829,8 @@
     <Content Include="Scripts\greensock\minified\TweenMax.min.js" />
     <Content Include="Scripts\jquery.form.js" />
     <Content Include="Scripts\jquery.Jcrop.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\selectize.min.js" />
     <Content Include="Scripts\site.avatar.js" />
     <Content Include="Scripts\toastr.min.js" />
@@ -1113,7 +1116,7 @@
     <Content Include="Views\Home\UserAggreement.cshtml" />
     <Content Include="Views\ListDisability\Error.cshtml" />
     <Content Include="Views\StorageCompany\CandidateDetails.cshtml" />
-    <Content Include="Views\Shared\_IdeaSearchPartial.cshtml" />
+    <Content Include="Views\Innovation\_IdeaSearchPartial.cshtml" />
     <Content Include="Views\Home\EmailConfirm.cshtml" />
     <Content Include="Scripts\greensock\minified\.DS_Store" />
     <None Include="Web.Debug.config">
