@@ -1,0 +1,92 @@
+﻿@model IQRecruitmentTool.Models.CandidateWorkExperience
+
+<section class="checkout">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-7 mr-auto text-left mt40 mb40">
+                <div class="section-heading">
+                    <h5>Are you sure you want to delete this?</h5>
+                    <hr class="">
+                </div>
+
+                <div>
+
+                    <hr />
+                    <dl class="dl-horizontal">
+                        @Html.DisplayNameFor(model => model.JobTitle)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.JobTitle)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.CompanyName)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.CompanyName)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Sector)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Sector)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.EmploymentBasis)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.EmploymentBasis)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.DescriptionOfDuties)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.DescriptionOfDuties)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.JobStartDate)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.JobStartDate)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.JobEndate)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.JobEndate)
+                        </dd>
+
+                    </dl>
+
+
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="col-md-6 mr-auto text-center mt40 mb40">
+                            <input type="submit" value="Delete" class="btn btn-default" />
+                        </div>
+                    }
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+
+</section>
+

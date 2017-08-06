@@ -1,0 +1,276 @@
+﻿@model IQRecruitmentTool.Models.CandidatePersonalInfProfile
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <section class="checkout">
+        <div class="container">
+            <div class="row">
+        @Html.HiddenFor(x=> x.EmailAddress)
+                <div class="col-md-8 mr-auto text-center mt40 mb40">
+                    <div class="section-heading">
+                        <h5>Edit Personal Profile</h5>
+                        <hr class="separator">
+                    </div>
+                    @*<div class="postimage">
+                            <span class="ion-person" data-pack="default" data-tags="users, staff, head, human"></span>
+                            <label for="file">Upload Image:</label>
+                            <input class="submit" type="file" name="file" id="file" style="width: 100%;" />
+
+                            </div>
+                        <br />
+                        <br />
+                        <br />*@
+
+					<div class="half-left col-sm-6">
+						@Html.LabelFor(m => m.Name, new { @class = "col-md-2 control-label" })
+					</div>
+					<div class="half-right col-sm-6">
+						<div class="col-lg-10">
+							@Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "input-text", placeholder = "First Name" } })
+
+						</div>
+						<div class="col-lg-2">
+							@Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+						</div>
+
+					</div>
+					<div class="half-left col-sm-6">
+
+						@Html.LabelFor(m => m.Surname, new { @class = "col-md-2 control-label" })
+
+					</div>
+					<div class="half-right col-sm-6">
+						<div class="col-lg-10">
+							@Html.EditorFor(model => model.Surname, new { htmlAttributes = new { @class = "input-text", placeholder = "Surname" } })
+						</div>
+						<div class="col-lg-2">
+							@Html.ValidationMessageFor(model => model.Surname, "", new { @class = "text-danger" })
+						</div>
+					</div>
+					<div class="half-left col-sm-6">
+						<label class="col-md-12 leftalignlbl control-label">RSA Citizen</label>
+					</div>
+					<div class="half-right col-sm-6">
+						<div class="col-lg-10">
+							@Html.DropDownListFor(model => model.RSACitizen, (SelectList)ViewBag.Dropdownlist, "Are you an RSA Citizen?", new { htmlAttributes = new { @class = "input-text" } })
+						</div>
+						<div class="col-lg-2">
+							@Html.ValidationMessageFor(model => model.RSACitizen, "", new { @class = "text-danger" })
+						</div>
+
+					</div>
+					<div class="half-left col-sm-6">
+
+						<label class="col-md-12 leftalignlbl control-label">Birth Date</label>
+					</div>
+					<div class="half-right col-sm-6">
+						<div class="col-lg-10">
+							@Html.EditorFor(model => model.CandidateIDNumber, new { htmlAttributes = new { @class = "input-text", placeholder = "dd/mm/yyyy" } })
+						</div>
+						<div class="col-lg-2">
+							@Html.ValidationMessageFor(model => model.CandidateIDNumber, "", new { @class = "text-danger" })
+						</div>
+					</div>
+					<div class="half-left col-sm-6">
+						@Html.LabelFor(m => m.Race, new { @class = "col-md-2 control-label" })
+					</div>
+					<div class="half-right col-sm-6">
+						<div class="col-lg-10">
+							@Html.DropDownListFor(model => model.Race, (SelectList)ViewBag.Raceset, "Please select your race", new { htmlAttributes = new { @class = "input-text" } })
+						</div>
+						<div class="col-lg-2">
+							@Html.ValidationMessageFor(model => model.Race, "", new { @class = "text-danger" })
+						</div>
+
+					</div>
+					<div class="half-left col-sm-6">
+						@Html.LabelFor(m => m.Gender, new { @class = "col-md-2 control-label" })
+					</div>
+					<div class="half-right col-sm-6">
+						<div class="col-lg-10">
+							@Html.DropDownListFor(model => model.Gender, (SelectList)ViewBag.Genderset, "Please select your gender", new { htmlAttributes = new { @class = "input-text" } })
+						</div>
+						<div class="col-lg-2">
+							@Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
+						</div>
+					</div>
+					<div class="half-left col-sm-6">
+						@Html.LabelFor(m => m.Disability, new { @class = "col-md-2 control-label" })
+					</div>
+					<div class="half-right col-sm-6">
+						<div class="col-lg-10">
+							@Html.DropDownListFor(model => model.Disability, (SelectList)ViewBag.Disabilityset, "Do you have a Disability?", new { htmlAttributes = new { @class = "input-text" } })
+						</div>
+						<div class="col-lg-2">
+							@Html.ValidationMessageFor(model => model.Disability, "", new { @class = "text-danger" })
+						</div>
+					</div>
+
+
+					<div class="half-left col-sm-6">
+						<label class="col-md-2 control-label">Province</label>
+					</div>
+					<div class="half-right col-sm-6">
+						<div class="col-lg-10">
+							@Html.DropDownList("dropdown1", (SelectList)ViewBag.Provinces, new { htmlAttributes = new { @class = "input-text" } })
+						</div>
+						<div class="col-lg-2">
+							@Html.ValidationMessageFor(model => model.TownID, "", new { @class = "text-danger" })
+						</div>
+
+					</div>
+
+					<div class="half-left col-sm-6">
+						<label class="col-md-2 control-label">Region</label>
+					</div>
+					<div class="half-right col-sm-6">
+						<div class="col-lg-10">
+							@Html.DropDownList("dropdown2", (SelectList)ViewBag.Region, new { htmlAttributes = new { @class = "input-text" } })
+						</div>
+						<div class="col-lg-2">
+							@Html.ValidationMessageFor(model => model.TownID, "", new { @class = "text-danger" })
+						</div>
+					</div>
+					<div class="half-left col-sm-6">
+
+						<label class="col-md-2 control-label">Town</label>
+					</div>
+					<div class="half-right col-sm-6">
+						<div class="col-lg-10">
+							@Html.DropDownListFor(model => model.TownID, (SelectList)ViewBag.Town, new { htmlAttributes = new { @class = "input-text" } })
+						</div>
+						<div class="col-lg-2">
+							@Html.ValidationMessageFor(model => model.TownID, "", new { @class = "text-danger" })
+						</div>
+
+
+					</div>
+
+					<div class="half-left col-sm-6">
+						<label class="col-md-12 text-left leftalignlbl control-label">Cellphone Number</label>
+					</div>
+					<div class="half-right col-sm-6">
+						<div class="col-lg-10">
+							@Html.EditorFor(model => model.CellphoneNumber, new { htmlAttributes = new { @class = "input-text", placeholder = "Cell Number" } })
+						</div>
+						<div class="col-lg-2">
+							@Html.ValidationMessageFor(model => model.CellphoneNumber, "", new { @class = "text-danger" })
+						</div>
+
+
+					</div>
+					<div class="half-left col-sm-6">
+						<label class="col-md-12 text-left leftalignlbl control-label">Telephone Number</label>
+					</div>
+					<div class="half-right col-sm-6">
+						<div class="col-lg-10">
+							@Html.EditorFor(model => model.TelephoneNumber, new { htmlAttributes = new { @class = "input-text", placeholder = "Telephone Number" } })
+						</div>
+						<div class="col-lg-10">
+							@Html.ValidationMessageFor(model => model.TelephoneNumber, "", new { @class = "text-danger" })
+						</div>
+
+
+					</div>
+
+					<div class="half-left col-sm-6">
+						<label class="col-md-6 text-left control-label">Street Address</label>
+					</div>
+					<div class="half-right col-sm-6">
+						<div class="col-lg-10">
+							@Html.EditorFor(model => model.StreetAddress, new { htmlAttributes = new { @class = "input-text", placeholder = "Street Address" } })
+						</div>
+						<div class="col-lg-2">
+							@Html.ValidationMessageFor(model => model.StreetAddress, "", new { @class = "text-danger" })
+						</div>
+
+
+					</div>
+					<div class="half-left col-sm-6">
+						<label class="col-md-6 text-left control-label">Drivers License</label>
+					</div>
+
+					<div class="half-right col-sm-6">
+
+						<div class="col-lg-10">
+							@Html.DropDownListFor(model => model.DriversLicense, (SelectList)ViewBag.dropdrivers, "Do you have a Drivers License?", new { htmlAttributes = new { @class = "input-text", placeholder = "Drivers Licence" } })
+						</div>
+						<div class="col-lg-2">
+							@Html.ValidationMessageFor(model => model.DriversLicense, "", new { @class = "text-danger" })
+						</div>
+						<label class="text-danger">
+							@ViewBag.errormessage
+						</label>
+
+						<button type="submit" value="Save" class="btn btn-lg btn-primary btn-square btn-appear">Submit</button>
+
+					</div>
+            </div>
+        </div>
+</div>
+    </section>
+
+
+}
+
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+
+		var cleaveDate = new Cleave('#CandidateIDNumber', {
+			date: true
+		});
+        $(document).ready(function () {
+           
+        //$("#TownID").empty();
+        //$("#TownID").append('<option value="' + 0 + '">' + "--Select Town--" + '</option>')
+         $("#dropdown1").change(function () {
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("GetRegion")',
+				data: { id: $("#dropdown1").val() },
+
+                success: function (data) {
+                    $("#dropdown2").empty();
+                    $("#TownID").empty();
+                    $("#dropdown2").append('<option value="' + 0 + '">' + "--Select Region--" + '</option>')
+                    $("#TownID").append('<option value="' + 0 + '">' + "--Select Town--" + '</option>')
+                              $.each(data, function (i, Region) {
+                        $("#dropdown2").append('<option value="'+Region.Value+'">'+Region.Text+'</option>')
+                    })
+                }
+            })
+        })
+
+
+    });
+
+
+    </script>
+    <script>
+    $(document).ready(function () {
+        $("#dropdown2").change(function () {
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("GetTown")',
+                data: { id: $("#dropdown2").val() },
+                success: function (data) {
+                    $("#TownID").empty();
+                    $("#TownID").append('<option value="' + 0 + '">' + "--Select Town--" + '</option>')
+                    $.each(data, function (i, Town) {
+                        $("#TownID").append('<option value="' + Town.Value + '">' + Town.Text + '</option>')
+                    })
+                }
+            })
+        })
+
+    });
+    </script>
+}

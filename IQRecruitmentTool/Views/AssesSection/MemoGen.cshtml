@@ -1,0 +1,89 @@
+﻿@model IEnumerable<object>
+
+@{
+    List<IQRecruitmentTool.Models.AssesSection> AssessSection = Model.ToList()[0] as List<IQRecruitmentTool.Models.AssesSection>;
+    List<IQRecruitmentTool.Models.AssessQuestionStorage> AssessStorage = Model.ToList()[1] as List<IQRecruitmentTool.Models.AssessQuestionStorage>;
+    List<IQRecruitmentTool.Models.AssessMultipleQuestion> multiq = Model.ToList()[2] as List<IQRecruitmentTool.Models.AssessMultipleQuestion>;
+    List<IQRecruitmentTool.Models.AssessAnswer> AssesAnswer = Model.ToList()[3] as List<IQRecruitmentTool.Models.AssessAnswer>;
+
+}
+
+
+<section class="checkout">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-12 mr-auto text-left mt40 mb40">
+                <div class="section-heading">
+                    <h5>Assesment Creation - Section </h5>
+                    <hr class="">
+                </div>
+
+                @foreach (var item in AssessSection)
+                {  <h1>@item.SectionName</h1>
+                      <div class="col-md-12">
+                          
+                          @foreach (var items in AssessStorage.Where(x => x.SectionID == item.SectionID))
+                          {
+                              if (items.QuestionTypeID == 1)
+                              {
+                                <h3 class="col-lg-12">@items.Question</h3>
+                                  
+
+                                    <div class ="col-lg-12" id="checkboxes">
+                                        @foreach (var itemq in multiq.Where(x => x.QuestionID == items.QuestionID))
+                                        {
+                                        <div class="col-lg-8"><label>@itemq.MultipleChoiceAnswers</label></div><div class="col-lg-4"><input id="@itemq.MultipleChoiceID" type="checkbox" name="" /></div>
+                                        }
+                                    </div>
+
+               
+
+
+                              }
+                              else if (items.QuestionTypeID == 2)
+                              {
+                                            <h3 class="col-lg-12">@items.Question</h3>
+
+                                            <textarea class="col-lg-12" id="@items.QuestionID"></textarea>
+
+
+                                            }
+                                            else if (items.QuestionTypeID == 4)
+                                            { <h3 class="col-lg-12">@items.Question</h3>
+
+                                            <br />
+                                            <form>
+                                                @foreach (var itemq in multiq.Where(x => x.QuestionID == items.QuestionID))
+                                                {
+                                                    <div class="col-lg-8"><label>@itemq.MultipleChoiceAnswers</label></div><div class="col-lg-4"><input id="@itemq.MultipleChoiceID" type="radio" name="optradio" /></div>
+                                                }
+                                            </form>
+
+
+
+                                            }
+                                            else
+                                            { <br />
+                                            <h3 class="col-lg-12">@items.Question</h3>
+
+                                            <textarea class="col-lg-12" id="@items.QuestionID"></textarea>
+
+
+                                            }
+                                            }
+                                        </div>
+
+
+                                  }
+                </div>
+            </div>
+        </div>
+
+</section>
+
+
+@section scripts{
+
+
+}

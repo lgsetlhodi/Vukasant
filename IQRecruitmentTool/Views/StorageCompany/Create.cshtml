@@ -1,0 +1,422 @@
+﻿@model IQRecruitmentTool.Models.StorageCompany
+
+
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+
+    <section class="checkout"> 
+        <div class="container">
+            <div class="row">
+                @if (Request.IsAuthenticated && User.IsInRole("Recruitment Agency"))
+				{
+                    <div class="col-md-8 mr-auto text-left mt40 mb40">
+                        <div class="section-heading">
+                            <h5>Agency Registration</h5>
+                            <hr class="">
+                        </div>
+                        
+                        <div class="col-lg-4">
+                            <label>Agency Name</label>
+                        </div>
+                        <div class="col-lg-7">
+                            @Html.EditorFor(model => model.CompanyName, new { htmlAttributes = new { @class = "Input-text" } })
+                        </div>
+                        <div class="col-lg-1">
+							<label class="
+                                   
+                                   
+                                   ">@ViewBag.CName</label>
+                        </div>
+                        <div class="col-lg-4">
+                            <label>Agency Registration Number</label>
+                        </div>
+                        <div class="col-lg-7">
+                            @Html.EditorFor(model => model.CompanyRegistrationNumber, new { htmlAttributes = new { @class = "Input-text" } })
+                        </div>
+                        <div class="col-lg-1">
+							<label class="text-danger">@ViewBag.CReg</label>
+                        </div>
+                        <div class="col-lg-4">
+                            <label>Telephone Number</label>
+                        </div>
+                        <div class="col-lg-7">
+                            @Html.EditorFor(model => model.CompanyTelephoneNumber, new { htmlAttributes = new { @class = "Input-text" } })
+                        </div>
+                        <div class="col-lg-1">
+							<label class="text-danger">@ViewBag.ComNum</label>
+                        </div>
+                        <div class="col-lg-4">
+                            <label>Mobile Number</label>
+                        </div>
+                        <div class="col-lg-7">
+                            @Html.EditorFor(model => model.MobileNumber, new { htmlAttributes = new { @class = "Input-text NumberCall" } })
+                        </div>
+                        <div class="col-lg-1">
+							<label class="text-danger">@ViewBag.MobNum</label>
+                        </div>
+                        <div class="col-lg-4">
+                            <label>Brief description of what you do.</label>
+                        </div>
+                        <div class="col-lg-7">
+                            @Html.TextAreaFor(model => model.CompanyDescription, new { htmlAttributes = new { @class = "Input-text" } })
+                        </div>
+                        <div class="col-lg-1">
+							<label class="text-danger">@ViewBag.CompDesc</label>
+                        </div>
+                        <div class="col-lg-4">
+                            <label>Province</label>
+                        </div>
+                        <div class="col-lg-7">
+                            @Html.DropDownList("dropdown1", (SelectList)ViewBag.Provinces, new { htmlAttributes = new { @class = "input-text" } })
+                        </div>
+                        <div class="col-lg-1">
+							<label class="text-danger">@ViewBag.TWID</label>
+                        </div>
+
+                        <div class="col-lg-4">
+                            <label>Region</label>
+                        </div>
+                        <div class="col-lg-7">
+                            @Html.DropDownList("dropdown2", new SelectList(String.Empty, "value", "text"), "--Select Region--", new { htmlAttributes = new { @class = "input-text" } })
+                        </div>
+                        <div class="col-lg-1">
+							<label class="text-danger">@ViewBag.TWID</label>
+                        </div>
+
+                        <div class="col-lg-4">
+                            <label>Town</label>
+                        </div>
+                        <div class="col-lg-7">
+                            @Html.DropDownListFor(model => model.TownID, (SelectList)ViewBag.Town, new { htmlAttributes = new { @class = "input-text" } })
+                        </div>
+                        <div class="col-lg-1">
+							<label class="text-danger">@ViewBag.TWID</label>
+                        </div>
+
+                        <div class="col-lg-4">
+                            <label>Company Street Address</label>
+                        </div>
+                        <div class="col-lg-7">
+                            @Html.TextAreaFor(model => model.CompanyAddress, new { htmlAttributes = new { @class = "Input-text" } })
+                        </div>
+                        <div class="col-lg-1">
+							<label class="text-danger">@ViewBag.CompAdd</label>
+                        </div>
+
+                 </div>
+
+				}
+				else if (Request.IsAuthenticated && User.IsInRole("Company"))
+				{
+                    <div class="col-md-8 mr-auto text-left mt40 mb40">
+                        <div class="section-heading">
+                            <h5>Company Registration</h5>
+                            <hr class="">
+                        </div>
+                        <div class="col-lg-4">
+                            <label>Company Name</label>
+                        </div>
+                        <div class="col-lg-7">
+                            @Html.EditorFor(model => model.CompanyName, new { htmlAttributes = new { @class = "Input-text" } })
+                        </div>
+                        <div class="col-lg-1">
+							<label class="text-danger">@ViewBag.CName</label>
+                        </div>
+                        <div class="col-lg-4">
+                            <label>Company Registration Number</label>
+                        </div>
+                        <div class="col-lg-7">
+                            @Html.EditorFor(model => model.CompanyRegistrationNumber, new { htmlAttributes = new { @class = "Input-text" } })
+                        </div>
+                        <div class="col-lg-1">
+							<label class="text-danger">@ViewBag.CReg</label>
+                        </div>
+                        <div class="col-lg-4">
+                            <label>Business Sector</label>
+                        </div>
+                        <div class="col-lg-7">
+                            @Html.DropDownListFor(model => model.BusinessSector, (SelectList)ViewBag.Categoryset, "--Select Sector--", new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                        <div class="col-lg-1">
+							<label class="text-danger">@ViewBag.BusSect</label>
+                        </div>
+                        <div class="col-lg-4">
+                            <label>Company Telephone Number</label>
+                        </div>
+                        <div class="col-lg-7">
+                            @Html.EditorFor(model => model.CompanyTelephoneNumber, new { htmlAttributes = new { @class = "Input-text" } })
+                        </div>
+                        <div class="col-lg-1">
+							<label class="text-danger">@ViewBag.ComNum</label>
+                        </div>
+                        <div class="col-lg-4">
+                            <label>Mobile Number</label>
+                        </div>
+                        <div class="col-lg-7">
+                            @Html.EditorFor(model => model.MobileNumber, new { htmlAttributes = new { @class = "Input-text NumberCall" } })
+                        </div>
+                        <div class="col-lg-1">
+							<label class="text-danger">@ViewBag.MobNum</label>
+                        </div>
+                        <div class="col-lg-4">
+                            <label>Brief description of what you do.</label>
+                        </div>
+                        <div class="col-lg-7">
+                            @Html.TextAreaFor(model => model.CompanyDescription, new { htmlAttributes = new { @class = "Input-text" } })
+                        </div>
+                        <div class="col-lg-1">
+							<label class="text-danger">@ViewBag.CompDesc</label>
+                        </div>
+
+                        <div class="col-lg-4">
+                            <label>Province</label>
+                        </div>
+                        <div class="col-lg-7">
+                            @Html.DropDownList("dropdown1", (SelectList)ViewBag.Provinces, new { htmlAttributes = new { @class = "input-text" } })
+                        </div>
+                        <div class="col-lg-1">
+							<label class="text-danger">@ViewBag.TWID</label>
+							</div>
+                        <div class="col-lg-4">
+                            <label>Region</label>
+                        </div>
+                        <div class="col-lg-7">
+                            @Html.DropDownList("dropdown2", new SelectList(String.Empty, "value", "text"), "--Select Region--", new { htmlAttributes = new { @class = "input-text" } })
+                        </div>
+                        <div class="col-lg-1">
+							<label class="text-danger">@ViewBag.TWID</label>
+                        </div>
+
+                        <div class="col-lg-4">
+                            <label>Town</label>
+                        </div>
+                        <div class="col-lg-7">
+                            @Html.DropDownListFor(model => model.TownID, (SelectList)ViewBag.Town, new { htmlAttributes = new { @class = "input-text" } })
+                        </div>
+                        <div class="col-lg-1">
+							<label class="text-danger">@ViewBag.TWID</label>
+						</div>
+                        <div class="col-lg-4">
+                            <label>Company Street Address</label>
+                        </div>
+                        <div class="col-lg-7">
+                            @Html.TextAreaFor(model => model.CompanyAddress, new { htmlAttributes = new { @class = "Input-text" } })
+                        </div>
+                        <div class="col-lg-1">
+							<label class="text-danger">@ViewBag.CompAdd</label>
+                        </div>
+
+                    </div>
+
+                }
+                else if (Request.IsAuthenticated && User.IsInRole("Small Business"))
+                {
+                    <div class="col-md-8 mr-auto text-left mt40 mb40">
+                        <div class="section-heading">
+                            <h5>Small Business Registration</h5>
+                            <hr class="">
+                        </div>
+                        <div class="col-lg-4">
+                            <label>Company Name</label>
+                        </div>
+                        <div class="col-lg-7">
+                            @Html.EditorFor(model => model.CompanyName, new { htmlAttributes = new { @class = "Input-text" } })
+                        </div>
+                        <div class="col-lg-1">
+                           <label class="text-danger">@ViewBag.CName</label>
+                        </div>
+                        <div class="col-lg-4">
+                            <label>Company Registration Number</label>
+                        </div>
+                        <div class="col-lg-7">
+                            @Html.EditorFor(model => model.CompanyRegistrationNumber, new { htmlAttributes = new { @class = "Input-text" } })
+                        </div>
+                        <div class="col-lg-1">
+							<label class="text-danger">@ViewBag.CReg</label>
+                        </div>
+                        <div class="col-lg-4">
+                            <label>Business Sector</label>
+                        </div>
+                        <div class="col-lg-7">
+                            @Html.DropDownListFor(model => model.BusinessSector, (SelectList)ViewBag.Categoryset, "--Select Sector--", new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                        <div class="col-lg-1">
+							<label class="text-danger">@ViewBag.BusSect</label>
+                        </div>
+                        <div class="col-lg-4">
+                            <label>Company Telephone Number</label>
+                        </div>
+                        <div class="col-lg-7">
+                            @Html.EditorFor(model => model.CompanyTelephoneNumber, new { htmlAttributes = new { @class = "Input-text" } })
+                        </div>
+                        <div class="col-lg-1">
+							<label class="text-danger">@ViewBag.ComNum</label>
+                        </div>
+                        <div class="col-lg-4">
+                            <label>Mobile Number</label>
+                        </div>
+                        <div class="col-lg-7">
+                            @Html.EditorFor(model => model.MobileNumber, new { htmlAttributes = new { onkeyup = "NumbersOnly1();",@class = "Input-text NumberCall" } })
+                            <p>Please add valid South African number starting with a 0 e.g. 0821231234</p>
+                        </div>
+                        <div class="col-lg-1">
+							<label class="text-danger">@ViewBag.MobNum</label>
+                        </div>
+  
+                        <div class="col-lg-4">
+                            <label>Brief description of what you do.</label>
+                        </div>
+                        <div class="col-lg-7">
+                            @Html.TextAreaFor(model => model.CompanyDescription, new { htmlAttributes = new { @class = "Input-text" } })
+                        </div>
+                        <div class="col-lg-1">
+							<label class="text-danger">@ViewBag.CompDesc</label>
+                        </div>
+                        <div class="col-lg-4">
+                            <label>Province</label>
+                        </div>
+                        <div class="col-lg-7">
+                            @Html.DropDownList("dropdown1", (SelectList)ViewBag.Provinces, new { htmlAttributes = new { @class = "input-text" } })
+                        </div>
+                        <div class="col-lg-1">
+							<label class="text-danger">@ViewBag.TWID</label>
+                        </div>
+
+                        <div class="col-lg-4">
+                            <label>Region</label>
+                        </div>
+                        <div class="col-lg-7">
+                            @Html.DropDownList("dropdown2", new SelectList(String.Empty, "value", "text"), "--Select Region--", new { htmlAttributes = new { @class = "input-text" } })
+                        </div>
+                        <div class="col-lg-1">
+							<label class="text-danger">@ViewBag.TWID</label>
+                        </div>
+
+                        <div class="col-lg-4">
+                            <label>Town</label>
+                        </div>
+                        <div class="col-lg-7">
+                            @Html.DropDownListFor(model => model.TownID, (SelectList)ViewBag.Town, new { htmlAttributes = new { @class = "input-text" } })
+                        </div>
+                        <div class="col-lg-1">
+							<label class="text-danger">@ViewBag.TWID</label>
+                        </div>
+                        <div class="col-lg-4">
+                            <label>Company Street Address</label>
+                        </div>
+                        <div class="col-lg-7">
+                            @Html.TextAreaFor(model => model.CompanyAddress, new { htmlAttributes = new { @class = "Input-text" } })
+                        </div>
+                        <div class="col-lg-1">
+							<label class="text-danger">@ViewBag.CompAdd</label>
+                        </div>
+                        <div class="col-lg-4">
+                            <label>Company Size (Head Count) - Optional</label>
+                        </div>
+                        <div class="col-lg-7">
+                            @Html.EditorFor(model => model.CompanySize, new { htmlAttributes = new { @class = "Input-text" } })
+                        </div>
+                        <div class="col-lg-1">
+							<label class="text-danger">@ViewBag.CompSiz</label>
+                        </div>
+                        <div class="col-lg-4">
+                            <label>Business Sector</label>
+                        </div>
+                        <div class="col-lg-7">
+                            @Html.DropDownListFor(model => model.BeeLevel, (SelectList)ViewBag.BEELevel, "--Select Bee Rating--", new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                        <div class="col-lg-1">
+							<label class="text-danger">@ViewBag.CompBee</label>
+                        </div>
+                        <div class="col-lg-4">
+                            <label>Years In Business</label>
+                        </div>
+                        <div class="col-lg-7">
+                            @Html.EditorFor(model => model.YearsInBusiness, new { htmlAttributes = new { @class = "Input-text" } })
+                        </div>
+                        <div class="col-lg-1">
+							<label class="text-danger">@ViewBag.YinB</label>
+                        </div>
+
+
+                    </div>
+
+                }
+            </div>
+        </div>
+				
+
+        <div class="col-md-6 mr-auto text-center mt40 mb40">
+            <button type="submit" value="Create" class=" btn btn-lg btn-primary btn-square btn-appear">Submit</button>
+        </div>
+    </section>
+
+  
+}
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+
+   
+        function NumbersOnly1() {
+            // handle onkeyup event
+
+            var IDelement1 = document.getElementById("MobileNumber");
+
+
+            if (IDelement1.value.length > 10)
+            { IDelement1.value = IDelement1.value.substring(0, 10) };
+        }
+     
+   
+    $(document).ready(function () {
+        $("#TownID").empty();
+        $("#TownID").append('<option value="' + "" + '">' + "--Select Town--" + '</option>')
+         $("#dropdown1").change(function () {
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("GetRegion")',
+                data: { id: $("#dropdown1").val() },
+                success: function (data) {
+                    $("#dropdown2").empty();
+                    $("#TownID").empty();
+                    $("#dropdown2").append('<option value="' + "" + '">' + "--Select Region--" + '</option>')
+                    $("#TownID").append('<option value="' + "" + '">' + "--Select Town--" + '</option>')
+                              $.each(data, function (i, Region) {
+                        $("#dropdown2").append('<option value="'+Region.Value+'">'+Region.Text+'</option>')
+                    })
+                }
+            })
+        })
+
+
+    });
+
+
+    </script>
+    <script>
+    $(document).ready(function () {
+        $("#dropdown2").change(function () {
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("GetTown")',
+                data: { id: $("#dropdown2").val() },
+                success: function (data) {
+                    $("#TownID").empty();
+                    $("#TownID").append('<option value="' + "" + '">' + "--Select Town--" + '</option>')
+                    $.each(data, function (i, Town) {
+                        $("#TownID").append('<option value="' + Town.Value + '">' + Town.Text + '</option>')
+                    })
+                }
+            })
+        })
+
+    });
+    </script>
+}

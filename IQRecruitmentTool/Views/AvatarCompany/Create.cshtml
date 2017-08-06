@@ -1,0 +1,53 @@
+﻿@model IQRecruitmentTool.Models.StorageCompany
+
+
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+
+    <section class="checkout">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-6 mr-auto text-left mt40 mb40">
+                    <div class="section-heading">
+                        <h5>Company Logo</h5>
+                        <hr class="
+                            ">
+                    </div>
+
+           
+                    <div class="col-lg-6 leftalignlbl">
+                        <label>Upload Image</label>
+                    </div>
+                    <div class="col-lg-5">
+
+
+                        <input type="file" name="file" value="file" />
+                        @ViewBag.FileFormat
+                    </div>
+                    <div class="col-lg-1 ">
+                        @Html.ValidationMessageFor(model => model.imgUrl, "", new { @class = "text-danger" })
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+        <div class="col-md-6 mr-auto text-center mt40 mb40">
+            <button type="submit" value="Create" class=" btn btn-lg btn-primary btn-square btn-appear">Submit</button>
+            <div />
+        </div>
+    </section>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,117 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+    ViewBag.MetaDescription = "Youth unemployment remains stubbornly high in South Africa, and as a consequence the country is plagued by many social ills. Vukasantewaa is ayouth empowerment ecosystem that draws on the spirit of the late great African queen and warrior, Yaa Asantewaa, who led the Ashanti rebellion against colonial rule in Ghana.";
+    ViewBag.MetaKeywords = "Vukasantewaa, Youth Empowerment, Youth Empwerment ecosystem, Youth Jobs, Internships, Graduate Programmes";
+    ViewBag.CanonicalURL = "http://www.Vukasantewaa.co.za";
+}
+
+<!-- Page Hero -->
+<section class="hero-fullwidth parallax bg-img-4">
+    <div class="hero-container container">
+        <div class="hero-content text-center">
+
+            <div class="col-sm-12 headerst1 mr-auto text-center pt20">         
+ 
+                    <img src="~/img/backgrounds/Transparent.png" class="logo-light" style="width:200px" alt="#">
+                <hr class="separator">
+                    <div class="col-sm-12 text-center">
+                        @*<h1 class="large  mt20">Moving with <span class="bold">Passion</span></h1>*@
+                        <h5 class="subheading mt20 mb30">We are coming soon</h5>  
+               
+                         <div data-date="October 24, 2017 12:00:00" id="countdown-timer">
+                            <div><h2 id="months"></h2><h6>Months</h6></div>
+                            <div><h2 id="days"></h2><h6>Days</h6></div>
+                            <div><h2 id="hours"></h2><h6>Hours</h6></div>
+                            <div><h2 id="minutes"></h2><h6>Minutes</h6></div>
+                            <div><h2 id="seconds"></h2><h6>Seconds</h6></div>
+                        </div>
+                  
+
+                        @Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new {Roles= "9553ad5a-3d06-477d-8c32-2abe89b1070e", @Class = "btn btn-lg btn-primary btn-circle btn-appear mt30", id = "registerLink" })
+                        @Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { @Class = "btn btn-lg btn-primary btn-circle btn-appear mt30", id = "loginLink" })
+                        
+
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+
+
+</div>
+                <ul id="iconTabsa" class="nav nav-tabs nav-tabs-center">
+                    <li>
+                    <a href="/Home/About">
+                        <span class="icon-tab ion-ios-information"></span>
+                        <span>About Us</span></a></li>
+                    
+                    <li>
+                        <a href="/Home/Form">
+                            <span class="icon-tab ion-ios-help"></span>
+                            <span>Help</span>
+                        </a>
+                    </li>
+                </ul>
+                   
+                
+                <br />
+   
+        
+                
+                @*<a href="@Url.Action("Create","CandidatePersonalInfProfile")" class="btn btn-lg btn-primary btn-square btn-appear"><span>Candidates <i class="ion-checkmark"></i></span></a>
+                <a href="#" class="btn btn-lg btn-primary btn-square btn-appear"><span>Recruitors <i class="ion-checkmark"></i></span></a>*@
+            </div>
+               
+
+        </div>
+    </div>
+   
+</section>
+
+<!-- End Page Hero -->
+<!-- Portfolio -->
+
+<!-- End Callout -->
+<!-- Testimonials -->
+<section class="pt100 parallax bg-img-5">
+   
+    <div class="row">
+        <div class="col-md-10 mr-auto">
+            <div class="testimonials white owl-carousel">
+                <div>
+                    <i class="vossen-quote color"></i>
+                    <h4>Where there are experts there will be no lack of learners.</h4>
+                    <h5 class="subheading">Swahili Proverb</h5>
+
+                </div>
+                <div>
+                    <i class="vossen-quote color"></i>
+                    <h4>You do not teach the paths of the forest to an old gorilla.</h4>
+                    <h5 class="subheading">Congolese proverb</h5>
+
+                </div>
+                <div>
+                    <i class="vossen-quote color"></i>
+                    <h4>There is only one success: to be able to spend your life in your own way</h4>
+                    <h5 class="subheading">Christopher Morley</h5>
+
+                </div>
+             
+                <div>
+                    <i class="vossen-quote color"></i>
+                    <h4>The wealth which enslaves the owner isn’t wealth.</h4>
+                    <h5 class="subheading">Yoruba</h5>
+
+                </div>
+                <div>
+                    <i class="vossen-quote color"></i>
+                    <h4>It takes a village to raise a child.</h4>
+                    <h5 class="subheading">African proverb</h5>
+				
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- End Testimonials -->

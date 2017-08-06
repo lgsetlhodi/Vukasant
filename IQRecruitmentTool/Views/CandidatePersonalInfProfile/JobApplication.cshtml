@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewBag.Title = "JobApplication";
+}
+
+
+<section class="checkout">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 mr-auto text-center mb40">
+                <div class="section-heading">
+                    <h5>Job Application Outcome</h5>
+                    <hr class="">
+                </div>
+                <div class="col-lg-12 ">
+                    <h3>@ViewBag.Message</h3>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 mr-auto text-center mt40 mb40">
+        <a href="@Url.Action("index","home")" type="submit" value="Create" class=" btn btn-lg btn-primary btn-square btn-appear">Return</a>
+    </div>
+</section>
+
+

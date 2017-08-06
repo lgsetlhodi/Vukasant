@@ -1,0 +1,134 @@
+﻿@model IQRecruitmentTool.Models.CandidateQualification_
+
+@{
+    ViewBag.Title = "Create";
+}
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <section class="checkout">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-8 mr-auto text-left mt40 mb40">
+                    <div class="section-heading">
+                        <h5>Qualifications</h5>
+                        <hr class="">
+                    </div>
+
+
+                    <div class="col-lg-4">
+                        <label>Qualification Type</label>
+                    </div>
+                    <div class="col-lg-7">
+                        @Html.DropDownListFor(model => model.QualificationType, (SelectList)ViewBag.QualType, "Please select your Qualification", new { htmlAttributes = new { @class = "input-text" } })
+                    </div>
+                    <div class="col-lg-1">
+                        @Html.ValidationMessageFor(model => model.QualificationType, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-lg-4">
+                        <label>Qualification Name</label>
+                    </div>
+                    <div class="col-lg-7">
+                        @Html.EditorFor(model => model.Qualification, new { htmlAttributes = new { @class = "input-text", placeholder = "Qualification" } })
+                    </div>
+                    <div class="col-lg-1">
+                        @Html.ValidationMessageFor(model => model.Qualification, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="col-lg-4">
+                        <label>Institution</label>
+                    </div>
+                    <div class="col-lg-7">
+                        @Html.EditorFor(model => model.Institution, new { htmlAttributes = new { @class = "input-text", placeholder = "Institution Obtained" } })
+                    </div>
+                    <div class="col-lg-1">
+                        @Html.ValidationMessageFor(model => model.Institution, "", new { @class = "text-danger" })
+                    </div>
+
+
+                    <div class="col-lg-4">
+                        <label>Duration</label>
+                    </div>
+                    <div class="col-lg-8">
+                        <div class="col-lg-4">
+                            @Html.EditorFor(model => model.YearStarted, new { htmlAttributes = new { onkeyup = "NumbersOnly1();", @class = "input-text", placeholder = "YYYY", MaxLength = "4" } })
+                        </div>
+                        <div class="col-lg-2">
+                            @Html.ValidationMessageFor(model => model.YearStarted, "", new { @class = "text-danger" })
+                        </div>
+
+
+                        <div class="col-lg-4">
+                            @Html.EditorFor(model => model.YearCompleted, new { htmlAttributes = new { onkeyup = "NumbersOnly();", @class = "input-text", placeholder = "YYYY", MaxLength = "4" } })
+                        </div>
+                        <div class="col-lg-2">
+                            @Html.ValidationMessageFor(model => model.YearCompleted, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+
+                    <div class="col-lg-4 ">
+                        <label>Major Subjects</label>
+                    </div>
+                    <div class="col-lg-7">
+                        @Html.TextAreaFor(model => model.MajorSubjects, new { htmlAttributes = new { @class = "input-text", placeholder = "Enter your Your major subjects" } })
+                    </div>
+                    <div class="col-lg-1">
+                        @Html.ValidationMessageFor(model => model.MajorSubjects, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="col-lg-4">
+                        <label>Score Average</label>
+                    </div>
+                    <div class="col-lg-7">
+                        @Html.EditorFor(model => model.ScoreAverage, new { htmlAttributes = new { @class = "input-text", placeholder = "Average Score" } })
+                    </div>
+                    <div class="col-lg-1">
+                        @Html.ValidationMessageFor(model => model.ScoreAverage, "", new { @class = "text-danger" })
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 mr-auto text-center mt40 mb40">
+            <button type="submit" value="Create" class=" btn btn-lg btn-primary btn-square btn-appear">Submit</button>
+        </div>
+
+    </section>
+
+
+
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+
+    function NumbersOnly() {
+        // handle onkeyup event
+
+        var IDelement = document.getElementById("YearCompleted");
+        var IDelement1 = document.getElementById("YearStarted");
+
+
+        if (IDelement.value.length > 4)
+        { IDelement.value = IDelement.value.substring(0, 4) };
+    }
+    function NumbersOnly1() {
+        // handle onkeyup event
+
+        var IDelement1 = document.getElementById("YearStarted");
+
+
+        if (IDelement1.value.length > 4)
+        { IDelement1.value = IDelement1.value.substring(0, 4) };
+    }
+    </script>
+}

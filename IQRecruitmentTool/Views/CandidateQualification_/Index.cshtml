@@ -1,0 +1,59 @@
+﻿@model IEnumerable<IQRecruitmentTool.Models.CandidateQualification_>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+    
+        <th>
+            @Html.DisplayNameFor(model => model.Qualification)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Institution)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.YearCompleted)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MajorSubjects)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ScoreAverage)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+   
+        <td>
+            @Html.DisplayFor(modelItem => item.Qualification)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Institution)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.YearCompleted)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MajorSubjects)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ScoreAverage)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.QualificationID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.QualificationID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.QualificationID })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,64 @@
+﻿@model IQRecruitmentTool.Models.StorageDocumentLibrary
+
+
+
+
+@using (Html.BeginForm("Create", "StorageDocumentLibrary", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <section class="checkout">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-8 mr-auto text-left mt40 mb40">
+                    <div class="section-heading">
+                        <h5>Document Upload</h5>
+                        <hr class="
+                            ">
+                    </div>
+
+                    <div class="col-lg-6 ">
+                        <label>Document Type</label>
+                    </div>
+                    <div class="col-lg-5 ">
+                        @Html.DropDownListFor(model => model.DocumentTypeID, (SelectList)ViewBag.Docutype, "Select document type", new { htmlAttributes = new { @class = "input-text" } })
+                    </div>
+                    <div class="col-lg-1 ">
+                        @Html.ValidationMessageFor(model => model.DocumentTypeID, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-lg-6">
+                        <label>Document Name</label>
+                    </div>
+                    <div class="col-lg-5">
+                        @Html.EditorFor(model => model.DocName, new { htmlAttributes = new { @class = "input-text", placeholder = "Document Name" } })
+                    </div>
+                    <div class="col-lg-1 ">
+                        @Html.ValidationMessageFor(model => model.DocName, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-lg-6 leftalignlbl">
+                        <label>Upload Document</label>
+                    </div>
+                    <div class="col-lg-5">
+
+
+                        <input type="file" name="file" value="file" />
+                        @ViewBag.FileFormat
+                    </div>
+                    <div class="col-lg-1 ">
+                        @Html.ValidationMessageFor(model => model.DocumentURL, "", new { @class = "text-danger" })
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+        <div class="col-md-6 mr-auto text-center mt40 mb40">
+            <button type="submit" value="Create" class=" btn btn-lg btn-primary btn-square btn-appear">Submit</button>
+            <div />
+        </div>
+    </section>
+}
+
+

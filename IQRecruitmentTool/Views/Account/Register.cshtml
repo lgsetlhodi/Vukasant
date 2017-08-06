@@ -1,0 +1,101 @@
+﻿@model IQRecruitmentTool.Models.RegisterViewModel
+@{
+    ViewBag.Title = "Register";
+}
+
+
+
+@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    <section class="checkout">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-6 mr-auto text-left mt40 mb40">
+                    <div class="section-heading">
+                        <h5>Register</h5>
+                        <hr class="separator">
+                    </div>
+                    @Html.ValidationSummary("", new { @class = "text-danger" })
+                    <div class="col-lg-6 ">
+                        <label>Email</label>
+                    </div>
+                    <div class="col-lg-6 ">
+                        @Html.TextBoxFor(m => m.Email, new { @class = "input-text", placeholder = "Email" })
+
+                    </div>
+                    <div class="col-lg-6">
+                        <label>Password</label>
+                    </div>
+                    <div class="col-lg-6">
+                        @Html.PasswordFor(m => m.Password, new { @class = "input-text", placeholder = "Password" })
+
+                    </div>
+                    <div class="col-lg-6">
+                        <label>Confirm Password</label>
+                    </div>
+                    <div class="col-lg-6">
+
+                        @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "input-text", placeholder = "Confirm Password" })
+
+                    </div>
+                    <div class="col-lg-6">
+                        <label>Register as</label>
+                    </div>
+                    <div class="col-lg-6">
+                        @Html.DropDownList("Name")
+
+
+                    </div>
+                    <div class="col-lg-12 text-center">
+                        <h3>Terms and Conditions</h3><br />
+
+                        <p>Do you accept the terms and conditions of our <a href="/Home/Policy"><b style="color:#257780"> Privacy Policy</b></a> and our <a href="/Home/UserAggreement"><b style="color:#257780">User Aggreement Policy.</b></a><input type="checkbox" id="Agreement" name="agr" value="agr"></p>
+                    </div>           
+
+
+                    
+                
+                </div>
+           
+
+            </div>
+
+            </div>
+        <div class="col-md-6 mr-auto text-center mt40 mb40">
+            <button type="submit" id="submit" class="btn btn-lg btn-primary btn-square btn-appear" value="Register">Register</button>
+            <div />
+        </div>
+
+    
+            </section>
+}
+                
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+<script>
+
+    $("#submit").prop("disabled", true);
+  $("#Agreement").change(function () {
+
+if (this.checked) {
+    $("#submit").prop("disabled", false);  
+                                            
+
+}
+
+else
+{
+
+    $("#submit").prop("disabled", true);  
+
+}
+
+});
+
+
+</script>
+
+}

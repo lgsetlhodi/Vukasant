@@ -1,0 +1,72 @@
+﻿@using IQRecruitmentTool.Models
+@model LoginViewModel
+@{
+    ViewBag.Title = "Log in";
+}
+
+
+
+@using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    <section class="checkout">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-4 mr-auto text-center mt40 mb40">
+                    <div class="section-heading">
+                        <h5>Login</h5>
+                        <hr class="separator">
+                    </div>
+
+
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                 
+                    <label class="text-danger">@ViewBag.ErrorLog</label>
+                  
+                    @Html.TextBoxFor(m => m.Email, new { @class = "input-text", placeholder = "Email" })
+                    @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                      
+                    
+                    @Html.PasswordFor(m => m.Password, new { @class = "input-text", placeholder = "Password" })
+                    @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                   
+             
+                        @Html.LabelFor(m => m.RememberMe)
+                     
+                         @Html.CheckBoxFor(m => m.RememberMe)
+               
+                                
+                     
+                    <button type="submit" value="Log in" class="btn btn-lg btn-primary btn-square btn-appear">Login</button>
+                    <p>
+                       
+                        <b>@Html.ActionLink("Register as a new user", "Register")</b><br />
+                        <b>@Html.ActionLink("Forgot Password?", "ForgotPassword")</b>
+                    </p>
+                           
+                        </div>
+             
+                    </div>
+                  
+      
+                   
+
+
+                </div>
+     
+
+
+
+    </section>
+}
+        @*<div class="col-md-4">
+            <section id="socialLoginForm">
+                @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+            </section>
+        </div>*@
+               
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }

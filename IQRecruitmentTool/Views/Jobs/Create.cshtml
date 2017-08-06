@@ -1,0 +1,318 @@
+﻿@model IQRecruitmentTool.Models.Jobs
+
+@{
+    ViewBag.Title = "Create";
+}
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+<section class="checkout">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-8 mr-auto text-left mt40 mb40">
+                <div class="section-heading">
+                    <h5>Create Job</h5>
+                    <hr class="">
+                </div>   
+                
+                        <div class="col-md-4">
+                            <label>Job Industry</label>
+                        </div>
+                        <div class="col-md-7">
+                            @Html.DropDownListFor(model => model.CategoryID, (SelectList)ViewBag.Categoryset, "--Select Category--", new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                        <div class="col-md-1">
+                            @Html.ValidationMessageFor(model => model.CategoryID, "", new { @class = "text-danger" })
+                        </div>
+                <div class="col-md-4">
+                    <label>Job Type</label>
+                </div>
+                <div class="col-md-7">
+                    @Html.DropDownListFor(model => model.JobTypeID, (SelectList)ViewBag.JobType, "--Select Job Type--", new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+                <div class="col-md-1">
+                    @Html.ValidationMessageFor(model => model.JobTypeID, "", new { @class = "text-danger" })
+                </div>
+                        <div class="col-md-4">
+                            <label>Job Title</label>
+                        </div>
+                        <div class="col-md-7">
+                           @Html.EditorFor(model => model.JobTitle, new { htmlAttributes = new { @class = "Input-Text", placeholder = "e.g Accountant, Engineer" } })
+                       </div>
+                        <div class="col-md-1">
+                           @Html.ValidationMessageFor(model => model.JobTitle, "", new { @class = "text-danger"})
+                       </div>
+                        <div class="col-md-4">
+                          <label>Company Name</label>
+                       </div>
+                        <div class="col-md-7">
+                          @Html.EditorFor(model => model.CompanyName, new { htmlAttributes = new { @class = "Input-Text" } })
+                       </div>      
+                        <div class="col-md-1">
+                          @Html.ValidationMessageFor(model => model.CompanyName, "", new { @class = "text-danger" })
+                       </div>
+                        <div class="col-md-4">
+                           <label>Job Description</label>
+                       </div>
+                        <div class="col-md-7">
+                         @Html.TextAreaFor(model => model.JobDescription, new { htmlAttributes = new { @class = "input-1" } })
+                       </div>
+                        <div class="col-md-1">
+                         @Html.ValidationMessageFor(model => model.JobDescription, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-md-4">
+                           <label>Job Level</label>
+                        </div>
+                        <div class="col-md-7">
+                             @Html.DropDownListFor(model => model.JobLevelID, (SelectList)ViewBag.JobLevelset, "--Select Level--", new { htmlAttributes = new { @class = "form-control" } })
+                       </div>
+				        <div class="col-md-1">
+				    	     @Html.ValidationMessageFor(model => model.JobLevelID, "", new { @class = "text-danger" })
+				                </div>
+                        <div class="col-md-4">
+                            <label>Do you want to display Remuneration?</label>
+                        </div>
+                        <div class="col-md-7">
+                            @Html.DropDownListFor(model => model.RemunerationType, (SelectList)ViewBag.RemType, "--Display Remuneration?--", new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                        <div class="col-md-1">
+                            @Html.ValidationMessageFor(model => model.RemunerationType, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-md-4">
+                            <label id="CustRem">Type your custom Display</label>
+                        </div>
+                        <div class="col-md-7">
+                            @Html.EditorFor(model => model.CustomRemuneration, new { htmlAttributes = new { @class = "Input-Text", placeholder = "e.g Market Related, Competitive, Commission" } })
+                        </div>
+                        <div class="col-md-1">
+                            <label class="text-danger">@ViewBag.CustError</label>
+                        </div>
+                <div class="col-md-4">
+                    <label>Rate Type</label>
+                </div>
+                <div class="col-md-7">
+                    @Html.DropDownListFor(model => model.RateType, (SelectList)ViewBag.RateType, "--Select RateType--", new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+                <div class="col-md-1">
+                    @Html.ValidationMessageFor(model => model.RateType, "", new { @class = "text-danger" })
+                </div>
+                        <div class="col-md-4">
+                           <label>Remuneration (From) - (To)</label>
+                        </div>
+                        <div class="col-md-8">
+                          <div class="col-md-5">
+                               @Html.EditorFor(model => model.RemunerationFrom, new { htmlAttributes = new { @class = "Input-Text input-element " } })
+                          </div>
+                          <div class="col-md-1">
+                               @Html.ValidationMessageFor(model => model.RemunerationFrom, "", new { @class = "text-danger" })
+                          </div>
+
+                          <div class="col-md-5">
+                               @Html.EditorFor(model => model.RemunerationTo, new { htmlAttributes = new { @class = "Input-Text input-element " } })
+                          </div>
+						  <div class="col-md-1">
+                               @Html.ValidationMessageFor(model => model.RemunerationTo, "", new { @class = "text-danger" })
+                           </div>
+                       
+                                <p class="">Please note that even if you do not want to display the remuneration, it has to still be captured, this will ensure that we suggest candidates with similar remuneration expectations to save you time</p>
+                          
+						</div>
+                    
+                    <div class="col-md-4">
+                        <label>Candidate Requirements</label>
+                    </div>
+                    <div class="col-md-7">
+                        @Html.TextAreaFor(model => model.CandidateRequirements, new { htmlAttributes = new { @class = "Input-Text" } })
+                    </div>
+                    <div class="col-md-1">
+                        @Html.ValidationMessageFor(model => model.CandidateRequirements, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-4">
+                        <label>Province</label>
+                    </div>
+                    <div class="col-md-7">
+                        @Html.DropDownList("dropdown1", (SelectList)ViewBag.Provinces, new { htmlAttributes = new { @class = "input-text" } })
+                    </div>
+                    <div class="col-md-1">
+                        <label class="text-danger">@ViewBag.TownID</label>
+                      
+                    </div>
+                    <div class="col-md-4">
+                        <label>Region</label>
+                    </div>
+                    <div class="col-md-7">
+                        @Html.DropDownList("dropdown2", new SelectList(String.Empty, "value", "text"), "--Select Region--", new { htmlAttributes = new { @class = "input-text" } })
+                    </div>
+                    <div class="col-md-1">
+                               <label class="text-danger">@ViewBag.TownID</label>
+                    </div>
+                    <div class="col-md-4">
+                        <label>Town</label>
+                    </div>
+                    <div class="col-md-7">
+                        @Html.DropDownListFor(model => model.TownID, (SelectList)ViewBag.Town, new { htmlAttributes = new { @class = "input-text" } })
+                    </div>
+                    <div class="col-md-1">
+                        <label class="text-danger">@ViewBag.TownID</label>
+                      
+                    </div>
+                    <div class="col-md-4">
+                        <label>Employment Basis</label>
+                    </div>
+                    <div class="col-md-7">
+                        @Html.DropDownListFor(model => model.EmploymentBasisID, (SelectList)ViewBag.EmploymentBasis, "--Select Basis--", new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                    <div class="col-md-1">
+                        @Html.ValidationMessageFor(model => model.EmploymentBasisID, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-4">
+                        <label>Number of Positions</label>
+                    </div>
+                    <div class="col-md-7">
+                        @Html.EditorFor(model => model.NumberOfPositions, new { htmlAttributes = new { @class = "Input-Text" } })
+                    </div>
+                    <div class="col-md-1">
+                        @Html.ValidationMessageFor(model => model.NumberOfPositions, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-4">
+                        <label>Advert Start Date</label>
+                    </div>
+                    <div class="col-md-7">
+                        @Html.EditorFor(model => model.AdvertDateSartDate, new { htmlAttributes = new { @class = "Input-Text DateIn" } })
+                    </div>
+                    <div class="col-md-1">
+                        @Html.ValidationMessageFor(model => model.AdvertDateSartDate, "", new { @class = "text-danger" })
+                    </div>
+                <div class="col-md-12">
+                    <p class="">Please note that your job advertisement will expire in a month from start date, but you will have the option to renew it</p>
+                    </div>
+                </div>
+
+    
+                </div>
+           </div>
+    <div class="col-md-6 mr-auto text-center mt40 mb40">
+        <button type="submit" value="Create" class="btn btn-lg btn-primary btn-square btn-appear">Submit</button>
+    </div>
+</section>
+}
+
+
+@section Scripts {
+
+    @Scripts.Render("~/bundles/jqueryval")
+<script>
+    var cleave = new Cleave('.DateIn', {
+        date: true,
+        datePattern: ['d', 'm', 'Y']
+    });
+    $('.input-element').toArray().forEach(function (field) {
+        new Cleave(field, {
+        numeral: true,
+        prefix: 'R '
+        });
+  
+    });
+
+
+</script>
+    <script>
+      
+    
+    $(document).ready(function () {
+        $("#TownID").empty();
+        $("#TownID").append('<option value="' + 0 + '">' + "--Select Town--" + '</option>')
+         $("#dropdown1").change(function () {
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("GetRegion")',
+                data: { id: $("#dropdown1").val() },
+                success: function (data) {
+                    $("#dropdown2").empty();
+                    $("#TownID").empty();
+                    $("#dropdown2").append('<option value="' + 0 + '">' + "--Select Region--" + '</option>')
+                    $("#TownID").append('<option value="' + 0 + '">' + "--Select Town--" + '</option>')
+                              $.each(data, function (i, Region) {
+                        $("#dropdown2").append('<option value="'+Region.Value+'">'+Region.Text+'</option>')
+                    })
+                }
+            })
+        })
+
+
+    });
+
+
+    </script>
+    <script>
+    $(document).ready(function () {
+        $("#dropdown2").change(function () {
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("GetTown")',
+                data: { id: $("#dropdown2").val() },
+                success: function (data) {
+                    $("#TownID").empty();
+                    $("#TownID").append('<option value="' + 0 + '">' + "--Select Town--" + '</option>')
+                    $.each(data, function (i, Town) {
+                        $("#TownID").append('<option value="' + Town.Value + '">' + Town.Text + '</option>')
+                    })
+                }
+            })
+        })
+
+    });
+    </script>
+    <script type="text/javascript">
+        $(function () { // will trigger when the document is ready
+            $("#AdvertDateSartDate").datepicker(); //Initialise any date pickers
+        });
+    </script>
+
+    <script type="text/javascript">
+
+        $(document).ready(function ()
+        {
+           
+            if ($("#RemunerationType").val() == 3) {
+
+                $("#CustRem").show();
+                $("#CustomRemuneration").show();
+
+            }
+
+            else {
+
+
+                $("#CustRem").hide();
+                $("#CustomRemuneration").hide();
+
+            }
+        
+
+            //var ddRemunerationType = $(':input[title="RemunerationType"]');
+
+            //if (ddRemunerationType.val() == 3)
+            $("#RemunerationType").change(function () {
+                if ($("#RemunerationType").val() == 3)
+                {
+                  
+                    $("#CustRem").show();
+                    $("#CustomRemuneration").show();
+              
+                }
+
+                else
+                {
+
+            
+                    $("#CustRem").hide();
+                    $("#CustomRemuneration").hide();
+
+                }
+            })
+        });
+</script>
+}
+

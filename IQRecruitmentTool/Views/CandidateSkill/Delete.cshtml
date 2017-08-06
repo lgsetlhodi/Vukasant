@@ -1,0 +1,35 @@
+﻿@model IQRecruitmentTool.Models.CandidateSkill
+
+@{
+    ViewBag.Title = "Delete";
+}
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <section class="checkout">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-4 mr-auto text-center mt40 mb40">
+                    <div class="section-heading">
+                        <h5>Are you sure you want to delete @Model.Skill as a Skill?</h5>
+                        <hr class="
+                            ">
+                    </div>
+
+                    <button type="submit" value="Delete" class="btn btn-lg btn-primary ">Delete</button>
+
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

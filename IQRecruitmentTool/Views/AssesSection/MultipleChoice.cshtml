@@ -1,0 +1,167 @@
+﻿@model IQRecruitmentTool.Models.AssessMultipleQuestion
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<section class="checkout">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-8 mr-auto text-left mt40 mb40">
+                <div class="section-heading">
+                    <h5>Multiple Choice options for @ViewBag.MultichoiceOptions</h5>
+                    <hr class="">
+                </div>
+
+                <div class="col-md-12">
+                    <div class="col-md-3">
+                        <label>Multiple choice option</label>
+                    </div>
+                    <div class="col-md-6">
+                      
+                        <textarea cols="40" rows="5" type="text" id="MultiChoiceName" name="MultiChoiceName" class="input-text"></textarea>
+
+                    </div>
+                    <div class="col-md-3">
+                        <button id="CreateMulti" type="submit" value="Creategg" class=" btn btn-lg btn-primary btn-square btn-appear">Submit</button>
+                    </div>
+                </div>
+                <table id="QuestionsList" class="table list-icons">
+                    <tbody></tbody>
+
+                </table>
+                <div class="col-md-12 text-center">
+                    @Html.ActionLink("Return", "Questions", "AssesSections", new { SectionID = ViewBag.SectionID }, new { @Class = "btn btn-lg btn-ghost-color btn-circle" })
+
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+    <label id="lblid">@ViewBag.QuestionID</label>
+</section>
+
+
+@section scripts{
+    <script>
+        $("#lblid").hide();
+        //$("#NextQ").hide();
+        $(document).ready(function () {
+            GetMultiQuestions();
+        });
+
+
+
+        function GetMultiQuestions() {
+            $.ajax({
+                url: '@Url.Action("GetmultiQuestions")',
+                type: 'POST',
+                datatype: 'json',
+                data: { QuestionID: $("#lblid").text() },
+                success: function (data) {
+                    var total = data.length;
+                        var rows = "";
+
+                            $.each(data, function (i, item) {
+
+                                
+                                    rows += '<tr>'
+                                    rows += '<td class="col-md-10"><i class="ion-arrow-right-c"></i>' + item.MultipleChoiceAnswers + '</td>' + '<td class="col-md-2"><button type="submit" id="Remove" value="' + item.MultipleChoiceID + '" class="btn btn-xs btn-danger btn-circle">Remove</button></td>'
+                                    rows += '</tr>'
+                                    rows += '<br />'
+                                    $("#QuestionsList tbody").html(rows);
+                              
+
+                        });
+
+                        //if (total > 0)
+                        //{
+                        //    $("#NextQ").show();
+
+                        //}
+                        //else
+                        //{
+                        //    $("#NextQ").hide();
+                        //}
+
+
+                },
+                error: function (err) {
+                    alert("Error:" + err.responseText);
+
+                }
+
+            });
+        }
+
+    </script>
+    <script>
+        $("#CreateMulti").click(function (e) {
+            var data = {
+                MultipleChoiceAnswers: $("#MultiChoiceName").val(),
+          
+                QuestionID: $("#lblid").text()
+            }
+                
+        var row = $(this).closest('tr');
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("SaveMultiQuestions")',
+            data: data ,
+            success: function (data) {
+                row.append();
+                GetMultiQuestions();
+                $("#MultiChoiceName").val("");
+
+
+            },
+            error: function (err) {
+                alert("Error:" + err.responseText);
+
+            }
+        });
+    })
+    </script>
+
+
+    <script>
+    $(document).on("click", "#Remove", function (e) {
+
+
+        var datas = {
+            MultipleChoiceID: $(this).val()
+        }
+        var row = $(this).closest('tr');
+
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("DeleteMultiQuestion")',
+            data: datas ,
+            success: function (datas) {
+                row.remove();
+                GetMultiQuestions();
+
+
+            },
+            error: function (err) {
+                alert("Error:" + err.responseText);
+
+            }
+        });
+    })
+    </script>
+
+
+}
+
+
+
+
+
+
+
+

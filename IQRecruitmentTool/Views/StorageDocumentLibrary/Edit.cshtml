@@ -1,0 +1,52 @@
+﻿@model IQRecruitmentTool.Models.StorageDocumentLibrary
+
+
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <section class="checkout">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-8 mr-auto text-left mt40 mb40">
+                    <div class="section-heading">
+                        <h5>Edit Document</h5>
+                        <hr class="">
+                        @Html.HiddenFor(x => x.DocumentURL)
+                      
+                        @Html.HiddenFor(x => x.UserTypeID)
+                        @Html.HiddenFor(x => x.Comments)
+                    </div>
+
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="col-lg-6 ">
+                        <label>Document Type</label>
+                    </div>
+                    <div class="col-lg-6 ">
+                        @Html.DropDownListFor(model => model.DocumentTypeID, (SelectList)ViewBag.Docutype, new { htmlAttributes = new { @class = "input-text" } })
+                        @Html.ValidationMessageFor(model => model.DocumentTypeID, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-lg-6">
+                        <label>Document Name</label>
+                    </div>
+                    <div class="col-lg-6">
+                        @Html.EditorFor(model => model.DocName, new { htmlAttributes = new { @class = "input-text", placeholder = "Document Name" } })
+                        @Html.ValidationMessageFor(model => model.DocName, "", new { @class = "text-danger" })
+                    </div>
+                  
+
+                </div>
+
+
+            </div>
+        </div>
+        <div class="col-md-6 mr-auto text-center mt40 mb40">
+            <button type="submit" value="Save" class=" btn btn-lg btn-primary btn-square btn-appear">Submit</button>
+            <div />
+        </div>
+    </section>
+}

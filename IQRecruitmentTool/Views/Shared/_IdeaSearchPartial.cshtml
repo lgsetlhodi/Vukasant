@@ -1,0 +1,54 @@
+﻿@model IEnumerable<IQRecruitmentTool.Dto.IdeasDto.UserIdeas>
+
+@if (Model != null)
+{
+
+    foreach (var item in Model)
+    {
+        <div class="col-sm-3">
+            <div class="cbp-item wander lifestyle">
+                <div class="col-sm-12">
+                    <img class="thumbnail" src="~/img/backgrounds/VK2.png" />
+                </div>
+
+                <div class="blog-thumb-desc">
+                    <a class="link-to-post" href="blog-post-carousel.html"><h4>@item.Title</h4></a>
+
+
+                    <p class="excerpt">@item.Description</p>
+
+
+                    <p class="blog-post-categories">
+                        <span><i class="ion-android-person"></i></span>
+
+                        <a href="#">@item.UserName</a>
+                    </p>
+                    <p class="blog-post-date"><i class="ion-calendar"></i>&nbsp;Posted: @item.CreatedDateTime</p>
+
+                    <div class="row">
+                        <div class="btn-action">
+                            <div class="col-sm-6">
+                                <div class="col-sm-4">
+                                    <button id="col_@item.IdeasId" name="Collaborate" value="@item.IdeasId" type="button" class="btn btn-xs btn-dark btn-square btnRequest"><i class="ion-ios-people"></i>&nbsp;Collaborate</button>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="col-sm-4">
+                                    <button id="fun_@item.IdeasId" name="Fund" value="@item.IdeasId" type="button" class="btn btn-xs btn-warning btn-square btnRequest"><i class="ion-card"></i>&nbsp;Fund</button>
+                                </div>
+                            </div>
+                        </div> <!-- ./col-sm-12-->
+                    </div> <!-- ./row-->
+
+
+                </div>
+
+
+            </div>
+
+        </div>
+                <!--./col-sm-3-->
+    }
+
+}

@@ -1,0 +1,69 @@
+﻿
+@model IEnumerable<object>
+
+@{
+    List<IQRecruitmentTool.Models.vwApplicantsPerJob> AppJobs = Model.ToList()[0] as List<IQRecruitmentTool.Models.vwApplicantsPerJob>;
+
+
+}
+
+
+<section class="page-title parallax overlay bg-shortcodes">
+    <div class="page-title-content">
+        <div class="container">
+            <div class="col-sm-12 text-center white">
+                <h1>@ViewBag.NameCompany</h1>
+                <hr class="separator">
+                <h5 class="subheading">TAKING OVER THE WORLD THROUGH PASSION.</h5>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="checkout">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-8 mr-auto text-left mt40 mb40">
+                <div class="section-heading">
+                    <h5>Applied Candidates</h5>
+
+                    <hr class="">
+                </div>
+
+                <table class="table-condensed table-responsive table-striped">
+                    <tr>
+                        <th>JobID</th>
+                        <th>Name</th>
+                        <th>Surname</th>
+                        <th>Cellphone Nr</th>
+                        <th>Gender</th>
+                        <th>Race</th>
+
+                        <th></th>
+                    </tr>
+                    @foreach (var item in AppJobs)
+                    {
+                        <tr>
+                            <td>@item.JobID</td>
+                            <td>@item.Name</td>
+                            <td>@item.Surname</td>
+                            <td>@item.CellphoneNumber</td>
+                            <td>@item.Gender</td>
+                            <td>@item.Race</td>
+
+                        </tr>
+                    }
+                </table>
+
+
+
+            </div>
+        </div>
+        <div class="col-md-6 mr-auto text-center">
+            @Html.ActionLink("Return to Home", "Index", "Home", routeValues: null, htmlAttributes: new { @Class = "btn btn-lg btn-primary btn-circle btn-appear mt30" })
+        </div>
+    </div>
+    
+</section>

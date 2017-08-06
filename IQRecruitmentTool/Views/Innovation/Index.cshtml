@@ -1,0 +1,246 @@
+﻿@model IQRecruitmentTool.ViewModel.IdeasViewModel
+@{
+    ViewBag.Title = "Index";
+}
+
+<br />
+<br />
+<br />
+<br />
+
+<!-- Portfolio -->
+<section class="blog col-sm-12">
+<div class="container-fluid">
+<div class="row">
+<div class="col-sm-12 col-sm-offset-4">
+
+    <div data-filter="*" class="col-sm-8">
+        <div class="row">
+            <div class="col-sm-6">
+                
+                <div id="searchArea">
+                    <input id="txtSearchIdeas" type="text" class="form-control" placeholder="Search for ideas...">
+                </div><!-- /searchArea -->
+
+            </div><!-- /.col-sm-6 -->
+            <span class="col-sm-1 search-button-area">
+                <button id="btnSearch" class="btn search-button" type="button">Search</button>
+            </span>
+        </div><!-- /.row -->
+    </div>
+</div>
+<br/>
+<br/>
+<br/>
+
+
+
+<div class="container-fluid">
+
+@if (Model.RecentIdeas != null)
+{
+    <!--Recent Ideas<-->
+    <div class="row">
+        <div class="col-sm-12">
+            <div id="recentSearchPageHeader" class="col-sm-12"><h4 class="page-header">Recent Ideas</h4>
+            </div>
+
+            <div id="searcResults">
+                
+                <div class="col-sm-12 col-sm-offset-6">
+                    <img id="ajaxLoaderImg" src="~/img/assets/ajax-loader.gif" width="100" style="display:none"/>
+                </div>
+
+                @foreach (var item in Model.RecentIdeas)
+                {
+                    <div class="col-sm-3">
+                        <div class="cbp-item wander lifestyle">
+                            <div class="col-sm-12">
+                                <img  class="thumbnail" src="~/img/backgrounds/VK2.png"/>
+                            </div>
+
+                            <div class="blog-thumb-desc">
+                                <a class="link-to-post" href="blog-post-carousel.html"><h4>@item.Title</h4></a>
+
+
+                                <p class="excerpt">@item.Description</p>
+
+
+                                <p class="blog-post-categories">
+                                    <span><i class="ion-android-person"></i></span>
+
+                                    <a href="#">@item.UserName</a>
+                                </p>
+                                <p class="blog-post-date"><i class="ion-calendar"></i>&nbsp;Posted: @item.CreatedDateTime</p>
+
+                                <div class="row">
+                                    <div class="btn-action">
+                                        <div class="col-sm-6">
+                                            <div class="col-sm-4">
+                                                <button id="col_@item.IdeasId" name="Collaborate" value="@item.IdeasId" type="button" class="btn btn-xs btn-dark btn-square btnRequest"><i class="ion-ios-people"></i>&nbsp;Collaborate</button>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-6">
+                                            <div class="col-sm-4">
+                                                <button id="fun_@item.IdeasId" name="Fund" value="@item.IdeasId" type="button" class="btn btn-xs btn-warning btn-square btnRequest"><i class="ion-card"></i>&nbsp;Fund</button>
+                                            </div>
+                                        </div>
+                                    </div> <!-- ./col-sm-12-->
+                                </div> <!-- ./row-->
+
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                    <!--./col-sm-3-->
+                }
+
+            </div> <!--SearchResults-->
+
+        </div>
+    </div>
+    <!--.row-->
+}
+
+    <!--You Recently Viewed-->
+    @if (Model.ViewedIdeas != null)
+    {
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="col-sm-12"><h4 class="page-header">You Recently Viewed</h4>
+            </div>
+
+            @foreach (var item in Model.ViewedIdeas)
+            {
+                <div class="col-sm-3">
+                    <div class="cbp-item wander lifestyle">
+                        <div class="col-sm-12">
+                            <img class="thumbnail" src="~/img/backgrounds/VK2.png"/>
+                        </div>
+
+                        <div class="blog-thumb-desc">
+                            <a class="link-to-post" href="blog-post-carousel.html"><h5>@item.Title</h5></a>
+
+
+                            <p class="excerpt">@item.Description</p>
+
+
+                            <p class="blog-post-categories">
+                                <span><i class="ion-ios-pricetags-outline"></i></span>
+
+                                <a href="#">IntelliQ Group</a>
+                            </p>
+
+                            <div class="row">
+                                <div class="btn-action">
+                                    <div class="col-sm-6">
+                                        <div class="col-sm-4">
+                                            <button id="@item.UserId" name="collabo" value="@item.IdeasId" type="button" class="btn btn-xs btn-dark btn-square btnRequest"><i class="ion-ios-people"></i>&nbsp;Collaborate</button>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="col-sm-4">
+                                            <button id="@item.UserId" name="fund" type="button" value="@item.IdeasId" class="btn btn-xs btn-warning btn-square btnRequest"><i class="ion-card"></i>&nbsp;Fund</button>
+                                        </div>
+                                    </div>
+                                </div> <!-- ./col-sm-12-->
+                            </div> <!-- ./row-->
+
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+                <!--./col-sm-3-->
+            }
+
+
+
+        </div>
+    </div> <!--.row-->
+}
+
+    <!--You Suggestions-->
+@if (Model.SearchedIdeas != null)
+{
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="col-sm-12">
+                <h4 class="page-header">Because You Searched For "@Model.LastSearchedTerm"</h4>
+            </div>
+
+            @foreach (var item in Model.SearchedIdeas)
+            {
+                <div class="col-sm-3">
+                    <div class="cbp-item wander lifestyle">
+                        <div class="col-sm-12">
+                            <img class="thumbnail" src="~/img/backgrounds/VK2.png"/>
+                        </div>
+
+                        <div class="blog-thumb-desc">
+                            <a class="link-to-post" href="blog-post-carousel.html"><h5>@item.Title</h5></a>
+
+
+                            <p class="excerpt">@item.Description</p>
+
+
+                            <p class="blog-post-categories">
+                                <span><i class="ion-ios-pricetags-outline"></i></span>
+
+                                <a href="#">IntelliQ Group</a>
+                            </p>
+
+                            <div class="row">
+                                <div class="btn-action">
+                                    <div class="col-sm-6">
+                                        <div class="col-sm-4">
+                                            <button id="@item.UserId" name="collabo" value="@item.IdeasId" type="button" class="btn btn-xs btn-dark btn-square btnRequest"><i class="ion-ios-people"></i>&nbsp;Collaborate</button>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="col-sm-4">
+                                            <button id="@item.UserId" name="fund" value="@item.IdeasId" type="button" class="btn btn-xs btn-warning btn-square btnRequest"><i class="ion-card"></i>&nbsp;Fund</button>
+                                        </div>
+                                    </div>
+                                </div> <!-- ./col-sm-12-->
+                            </div> <!-- ./row-->
+
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+                <!--./col-sm-3-->
+            }
+
+
+
+        </div>
+    </div> <!--.row-->
+}
+
+</div> <!--.container-fluid-->
+
+<br/>
+<br/>
+<br/>
+
+</div>
+</div>
+
+</section>
+
+
+
+
+

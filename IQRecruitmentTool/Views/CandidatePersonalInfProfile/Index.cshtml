@@ -1,0 +1,1001 @@
+﻿@model IEnumerable<object>
+
+@{
+	List<IQRecruitmentTool.Models.PersonalInfoVW> PersonalInf = Model.ToList()[0] as List<IQRecruitmentTool.Models.PersonalInfoVW>;
+	List<IQRecruitmentTool.Models.vwQualificationView> Edu = Model.ToList()[1] as List<IQRecruitmentTool.Models.vwQualificationView>;
+	List<IQRecruitmentTool.Models.CandidateWorkExperience> CandWork = Model.ToList()[2] as List<IQRecruitmentTool.Models.CandidateWorkExperience>;
+	List<IQRecruitmentTool.Models.vwLanguageCompetency> CandLanguage = Model.ToList()[3] as List<IQRecruitmentTool.Models.vwLanguageCompetency>;
+	List<IQRecruitmentTool.Models.vwDocumentLibrary> Docs = Model.ToList()[4] as List<IQRecruitmentTool.Models.vwDocumentLibrary>;
+	List<IQRecruitmentTool.Models.vwSkills> Skill = Model.ToList()[5] as List<IQRecruitmentTool.Models.vwSkills>;
+	List<IQRecruitmentTool.Models.vwListedJobs> ListedJ = Model.ToList()[6] as List<IQRecruitmentTool.Models.vwListedJobs>;
+	List<IQRecruitmentTool.Models.vwJobsPerApplicant> JobsAp = Model.ToList()[7] as List<IQRecruitmentTool.Models.vwJobsPerApplicant>;
+}
+
+
+<section class="page-title parallax overlay bg-shortcodes">
+    <div class="page-title-content">
+        <div class="container">
+            <div class="col-sm-12 text-center white">
+                <h1>@ViewBag.Name @ViewBag.Surname</h1>
+                <hr class="separator">
+          
+                <h5 class="subheading">TAKING OVER THE WORLD THROUGH PASSION.</h5>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Page Hero -->
+<!-- About -->
+<section class="blog">
+    <div class="container">
+        <div class="row">
+			<div class="col-md-9">
+
+			<div class="col-md-12 mt40 mb40">
+					<div class="panel-group accordian-style1 mb0" id="accordion">
+						<!-- First Panel -->
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<button class="panel-title collapsed" data-toggle="collapse" data-target="#collapseOne">
+									Personal Information
+								</button>
+							</div>
+							<div id="collapseOne" class="panel-collapse collapse">
+								<div class="panel-body">
+									<ul class="blog-standard">
+
+										<li>
+											@foreach (var item in PersonalInf)
+											{
+												DateTime DateP = item.UpdatedDate.Value;
+												<div><b>Last Updated</b></div>
+												<div class="side-details">
+													<div class="post-date">
+
+														<h4 class="month">@item.UpdatedDate.Value.ToString("MMM")</h4>
+														<h3 class="day">@item.UpdatedDate.Value.ToString("dd")</h3>
+														<span class="year">@item.UpdatedDate.Value.ToString("yyyy")</span>
+													</div>
+												</div>
+												<div class="post-content ">
+
+													<div class="post-text">
+														<a class="link-to-post" href="#"><h4>Personal Information</h4></a>
+														<p class="blog-post-categories">
+
+
+														</p>
+														<ul class="col-lg-12 list-icons">
+
+															<li>
+																<label>Profile Picture</label><span>
+																	<i class="ion-edit">
+																		@Html.ActionLink("Edit", "Upload", "Avatar")
+
+																	</i>
+																</span>
+															</li>
+														</ul>
+														@if (item.imgurl == null || item.imgurl == "")
+														{
+															if (item.Gender == "Female")
+															{  <ul class="col-lg-12 list-icons">
+															<li><h5><img src="~/img/backgrounds/imgwoman.png" class="logo-light" style="width:200px" alt="#"></h5></li>
+														</ul>
+
+															}
+															else
+															{
+																<ul class="col-lg-12 list-icons">
+																	<li><h5><img src="~/img/backgrounds/imgman.png" class="logo-light" style="width:200px" alt="#"></h5></li>
+																</ul>
+
+															}
+														}
+														else
+														{
+															<ul class="col-lg-12 list-icons">
+																<li><h5><img src="~/Avatars/@item.imgurl" class="logo-light" style="width:200px" alt="#"></h5></li>
+															</ul>		}
+
+														<ul class="col-lg-6 list-icons">
+															<li><label>Name</label></li>
+														</ul>
+														<ul class="col-lg-6 list-icons">
+															<li><h5>@item.Name</h5></li>
+														</ul>
+														<ul class="col-lg-6 list-icons">
+															<li><label>Surname</label></li>
+														</ul>
+														<ul class="col-lg-6 list-icons">
+															<li><h5>@item.Surname</h5></li>
+														</ul>
+														<ul class="col-lg-6 list-icons">
+															<li><label>RSA Citizen</label></li>
+														</ul>
+														<ul class="col-lg-6 list-icons">
+															<li><h5>@item.RSA_Citizen</h5></li>
+														</ul>
+														<ul class="col-lg-6 list-icons">
+															<li><label>Birth Date</label></li>
+														</ul>
+														<ul class="col-lg-6 list-icons">
+															<li><h5>@item.CandidateIDNumber</h5></li>
+														</ul>
+														<ul class="col-lg-6 list-icons">
+															<li><label>Race</label></li>
+														</ul>
+														<ul class="col-lg-6 list-icons">
+															<li><h5>@item.Race</h5></li>
+														</ul>
+														<ul class="col-lg-6 list-icons">
+															<li><label>Disability</label></li>
+														</ul>
+														<ul class="col-lg-6 list-icons">
+															<li><h5>@item.Disability</h5></li>
+														</ul>
+														<ul class="col-lg-6 list-icons">
+															<li><label>Gender</label></li>
+														</ul>
+														<ul class="col-lg-6 list-icons">
+															<li><h5>@item.Gender</h5></li>
+														</ul>
+														<ul class="col-lg-6 list-icons">
+															<li><label>Email Address</label></li>
+														</ul>
+														<ul class="col-lg-6 list-icons">
+															<li><h5>@item.EmailAddress</h5></li>
+														</ul>
+														<ul class="col-lg-6 list-icons">
+															<li><label>Cellphone Number</label></li>
+														</ul>
+														<ul class="col-lg-6 list-icons">
+															<li><h5>@item.CellphoneNumber</h5></li>
+														</ul>
+														<ul class="col-lg-6 list-icons">
+															<li><label>Telephone Number</label></li>
+														</ul>
+														@if (item.TelephoneNumber == "" || item.TelephoneNumber == null)
+														{
+
+															<ul class="col-lg-6 list-icons">
+																<li><h5>No number provided</h5></li>
+															</ul>
+
+														}
+														else
+														{     <ul class="col-lg-6 list-icons">
+															<li><h5>@item.TelephoneNumber</h5></li>
+														</ul>
+
+														}
+														<ul class="col-lg-6 list-icons">
+															<li><label>Province</label></li>
+														</ul>
+														<ul class="col-lg-6 list-icons">
+															<li><h5>@item.ProvinceName</h5></li>
+														</ul>
+														<ul class="col-lg-6 list-icons">
+															<li><label>Region</label></li>
+														</ul>
+														<ul class="col-lg-6 list-icons">
+															<li><h5>@item.Region</h5></li>
+														</ul>
+														<ul class="col-lg-6 list-icons">
+															<li><label>Town</label></li>
+														</ul>
+														<ul class="col-lg-6 list-icons">
+															<li><h5>@item.Town</h5></li>
+														</ul>
+														@if (item.DriversLicense == "1")
+														{
+															<ul class="col-lg-6 list-icons">
+																<li><label>Drivers License</label></li>
+															</ul>
+															<ul class="col-lg-6 list-icons">
+																<li><h5>Yes</h5></li>
+															</ul>		}
+														else
+														{  <ul class="col-lg-6 list-icons">
+															<li><label>Drivers License</label></li>
+														</ul>
+														<ul class="col-lg-6 list-icons">
+															<li><h5>No</h5></li>
+														</ul>
+
+														}
+														<span>
+															<i class="ion-edit">
+																@Html.ActionLink("Edit", "Edit", new { id = item.ID })
+
+															</i>
+														</span>
+													</div>
+
+												</div>
+												<hr class="Bottomser">
+											}
+										</li>
+										<li>
+											@if (Edu.Count > 0)
+											{
+												<div><b>Last Updated</b></div>
+												<div class="side-details">
+													<div class="post-date">
+														@foreach (var item in Edu.OrderByDescending(x => x.UpdatedDate).Take(1))
+														{
+															<h4 class="month">@item.UpdatedDate.Value.ToString("MMM")</h4>
+															<h3 class="day">@item.UpdatedDate.Value.ToString("dd")</h3>
+															<span class="year">@item.UpdatedDate.Value.ToString("yyyy")</span>		}
+													</div>
+												</div>
+
+												<div class="post-content">
+
+													<div class="post-text">
+														<a class="link-to-post" href="#"><h4>Education</h4></a>
+														<p class="blog-post-categories">
+
+
+														</p>
+
+														@foreach (var item in Edu)
+														{
+															<ul class="col-lg-12 list-icons">
+																<li><h5>@item.Institution</h5></li>
+																<li><label>Qualification</label></li>
+																<li><h6>@item.Qualification</h6></li>
+																<li><label>Major Subjects</label></li>
+																<li><h6>@item.MajorSubjects</h6></li>
+																<li><label>Average Score</label></li>
+																<li><h6>@item.ScoreAverage</h6></li>
+																<li><label>Year</label></li>
+																<li><h6>@item.YearStarted - @item.YearCompleted</h6></li>
+
+
+																<li>
+																	<span>
+																		<i class="ion-edit">
+																			@Html.ActionLink("Edit", "Edit", "CandidateQualification_", new { QualificationID = item.QualificationID, Trace = item.Institution }, null)
+
+																		</i>
+																	</span>
+
+																	<span>
+																		<i class="ion-trash-b">
+																			@Html.ActionLink("Delete", "Delete", "CandidateQualification_", new { QualificationID = item.QualificationID }, null)
+
+																		</i>
+																	</span>
+																</li>
+																<li><br /></li>
+															</ul>
+
+
+														}
+
+
+													</div>
+													<a href="@Url.Action("Create", "CandidateQualification_")" class="btn btn-sm btn-ghost-color"><span><i class="ion-edit"></i></span>Add Education</a>
+												</div>
+												<hr class="Bottomser">
+											}
+											else
+											{
+												<div class="post-content">
+
+													<div class="post-text">
+														<a class="link-to-post" href="#"><h4>Education</h4></a>
+														<p class="blog-post-categories">
+
+															<a href="@Url.Action("Create", "CandidateQualification_")" class="btn btn-sm btn-ghost-color"><span><i class="ion-edit"></i></span>Add Education </a>
+
+														</p>
+
+
+
+													</div>
+												</div>
+											}
+										</li>
+										<li>
+											@if (CandWork.Count > 0)
+											{
+												<div><b>Last Updated</b></div>
+												<div class="side-details">
+													<div class="post-date">
+														@foreach (var item in CandWork.OrderByDescending(x => x.UpdatedDate).Take(1))
+														{
+															<h4 class="month">@item.UpdatedDate.Value.ToString("MMM")</h4>
+															<h3 class="day">@item.UpdatedDate.Value.ToString("dd")</h3>
+															<span class="year">@item.UpdatedDate.Value.ToString("yyyy")</span>		}
+													</div>
+												</div>
+											}
+											else
+											{ }
+											@if (CandWork.Count > 0)
+											{
+												<div class="post-content">
+
+													<div class="post-text">
+														<a class="link-to-post" href="#"><h4>Work Experience</h4></a>
+
+														<p class="blog-post-categories">
+
+															@foreach (var item in CandWork)
+															{
+																<ul class="col-lg-12 list-icons">
+																	<li><h5>@item.JobTitle</h5></li>
+																	<li><label>@item.CompanyName</label></li>
+																	@if (item.CurrentEmployment == true || item.JobEndate == null)
+																	{
+																		<li><h6>@item.JobStartDate.Value.ToString("yyyy-MMM") - Current</h6></li> }
+																	else
+																	{
+																		<li><h6>@item.JobStartDate.Value.ToString("yyyy-MMM") - @item.JobEndate.Value.ToString("yyyy-MMM")</h6></li>		}
+
+
+																	<li><abbr>Responsebilities</abbr></li>
+																	<li><h6>@item.DescriptionOfDuties</h6></li>
+																	<li>
+																		<span>
+																			<i class="ion-edit">
+																				@Html.ActionLink("Edit", "Edit", "CandidateWorkExperience", new { WorkExperienceID = item.WorkExperienceID }, null)
+
+																			</i>
+																		</span>
+
+																		<span>
+																			<i class="ion-trash-b">
+																				@Html.ActionLink("Delete", "Delete", "CandidateWorkExperience", new { WorkExperienceID = item.WorkExperienceID }, null)
+
+																			</i>
+																		</span>
+																	</li>
+																	<li><br /></li>
+																</ul>
+
+															}
+
+													</div>
+													<a href="@Url.Action("Create","CandidateWorkExperience")" class="btn btn-sm btn-ghost-color"><span>Add Work Experience <i class="ion-checkmark"></i></span></a>
+
+												</div>
+												<hr class="Bottomser">
+											}
+											else
+											{
+												<div class="post-content">
+
+													<div class="post-text">
+														<a class="link-to-post" href="#"><h4>Work Experience</h4></a>
+
+														<p class="blog-post-categories">
+
+
+
+															<a href="@Url.Action("Create","CandidateWorkExperience")" class="btn btn-sm btn-ghost-color"><span>Create New <i class="ion-checkmark"></i></span></a>
+														</p>
+													</div>
+												</div>
+
+											}
+										</li>
+										<li>
+											@if (CandLanguage.Count > 0)
+											{
+												<div><b>Last Updated</b></div>
+												<div class="side-details">
+													<div class="post-date">
+
+														@foreach (var item in CandLanguage.Take(1))
+														{
+															<h4 class="month">@item.UpdateDate.Value.ToString("MMM")</h4>
+															<h3 class="day">@item.UpdateDate.Value.ToString("dd")</h3>
+															<span class="year">@item.UpdateDate.Value.ToString("yyyy")</span>		}
+													</div>
+												</div>
+											}
+											else
+											{
+
+
+											}
+											@if (CandLanguage.Count > 0)
+											{
+												<div class="post-content">
+
+													<div class="blog-widget blog-tags">
+														<a class="link-to-post" href="#"><h4>Language</h4></a>
+														<p class="blog-post-categories">
+
+															@foreach (var item in CandLanguage)
+															{
+																<ul class="col-lg-12 tags-list">
+																	<li class="col-lg-12"><label>@item.Language</label></li>
+																	@if (item.Read == "No")
+																	{
+
+																	}
+																	else
+																	{
+																		<li><h5>Read</h5></li>		}
+																	@if (item.Write == "No")
+																	{
+
+																	}
+																	else
+																	{
+																		<li><h5>Write</h5></li>		}
+																	@if (item.Speak == "No")
+																	{
+
+																	}
+																	else
+																	{
+																		<li><h5>Speak</h5></li>		}
+
+																	<li class="col-lg-12">
+																		<span>
+																			<i class="ion-edit">
+																				@Html.ActionLink("Edit", "Edit", "CandidateLanguage", new { CandidateLanguageID = item.CandidateLanguageID, LanguageType = item.Language, LanguageID = item.LanguageID }, null)
+
+																			</i>
+																		</span><span>
+																			<i class="ion-trash-b blog-post-categories">
+																				@Html.ActionLink("Delete", "Delete", "CandidateLanguage", new { CandidateLanguageID = item.CandidateLanguageID, Language = item.Language }, null)
+
+																			</i>
+																		</span>
+
+																	</li>
+
+																</ul>
+
+
+															}
+
+
+
+														</p>
+
+													</div>
+													<a href="@Url.Action("Create", "CandidateLanguage")" class="btn btn-sm btn-ghost-color"><span>Add Language<i class="ion-checkmark"></i></span></a>
+
+
+												</div>
+												<hr class="Bottomser">
+											}
+											else
+											{  <div class="post-content">
+
+												<div class="blog-widget blog-tags">
+													<a class="link-to-post" href="blog-post-carousel.html"><h4>Language</h4></a>
+													<p class="blog-post-categories">
+														<a href="@Url.Action("Create", "CandidateLanguage")" class="btn btn-sm btn-ghost-color"><span>Add Language<i class="ion-checkmark"></i></span></a>
+
+
+													</p>
+
+												</div>
+
+											</div>
+
+
+
+											}
+										</li>
+										<li>
+											@if (Skill.Count > 0)
+											{
+												<div><b>Last Updated</b></div>
+												<div class="side-details">
+													<div class="post-date">
+
+														@foreach (var item in Skill.Take(1))
+														{
+															<h4 class="month">@item.UpdateDate.Value.ToString("MMM")</h4>
+															<h3 class="day">@item.UpdateDate.Value.ToString("dd")</h3>
+															<span class="year">@item.UpdateDate.Value.ToString("yyyy")</span>		}
+													</div>
+												</div>
+											}
+											else
+											{
+
+
+											}
+											@if (Skill.Count > 0)
+											{
+												<div class="post-content">
+
+													<div class="blog-widget blog-tags">
+														<a class="link-to-post" href="#"><h4>Skill</h4></a>
+														<p class="blog-post-categories">
+
+															<table class="table-condensed table-responsive table-striped">
+																<tr>
+																	<th>Skill</th>
+																	<th>Competency</th>
+																	<th>Experience</th>
+
+																	<th></th>
+																</tr>
+																@foreach (var item in Skill)
+																{
+																	<tr>
+																		<td>@item.Skill</td>
+																		<td>@item.CompetencyName</td>
+																		<td>@item.Experience Year(s)</td>
+																		<td>
+
+																			<i class="ion-edit">
+																				@Html.ActionLink("Edit", "Edit", "CandidateSkill", new { RecordID = item.RecordID }, null)
+
+																			</i>
+																			<i class="ion-trash-b blog-post-categories">
+																				@Html.ActionLink("Delete", "Delete", "CandidateSkill", new { RecordID = item.RecordID }, null)
+																			</i>
+
+																		</td>
+																	</tr>		}
+															</table>
+
+
+
+
+
+														</p>
+
+													</div>
+													<a href="@Url.Action("Create", "CandidateSkill")" class="btn btn-sm btn-ghost-color"><span>Add Skill<i class="ion-checkmark"></i></span></a>
+
+
+												</div>
+												<hr class="Bottomser">
+											}
+											else
+											{  <div class="post-content">
+
+												<div class="blog-widget blog-tags">
+													<a class="link-to-post" href="#"><h4>Skill</h4></a>
+													<p class="blog-post-categories">
+														<a href="@Url.Action("Create", "CandidateSkill")" class="btn btn-sm btn-ghost-color"><span>Add Skill<i class="ion-checkmark"></i></span></a>
+
+
+													</p>
+
+												</div>
+
+											</div>
+
+
+
+											}
+										</li>
+
+										<li>
+											@if (Docs.Count > 0)
+											{
+												<div><b>Last Updated</b></div>
+												<div class="side-details">
+													<div class="post-date">
+
+														@foreach (var item in Docs.Take(1))
+														{
+															<h4 class="month">@item.UpdateDate.Value.ToString("MMM")</h4>
+															<h3 class="day">@item.UpdateDate.Value.ToString("dd")</h3>
+															<span class="year">@item.UpdateDate.Value.ToString("yyyy")</span>		}
+													</div>
+												</div>
+											}
+											else
+											{
+
+											}
+											@if (Docs.Count > 0)
+											{
+												<div class="post-content">
+
+													<div class="blog-widget blog-tags">
+														<a class="link-to-post" href="#"><h4>Upload Documents</h4></a>
+														<p class="blog-post-categories">
+
+
+															<table class="table-condensed table-responsive table-striped">
+																<tr>
+																	<th>Document Type</th>
+																	<th>Document Name</th>
+																	<th>Date Uploaded</th>
+
+																	<th></th>
+																</tr>
+																@foreach (var item in Docs)
+																{
+																	<tr>
+																		<td>@item.DocumentType</td>
+																		<td>@item.DocName</td>
+																		<td>@item.UpdateDate</td>
+																		<td>
+																			<i class="icon ion-document-text"><a href="~/UploadedDocuments/UploadedCV/@item.DocumentURL" target="_blank">Download</a></i>
+																			<i class="ion-edit">
+																				@Html.ActionLink("Edit", "Edit", "StorageDocumentLibrary", new { RecordID = item.RecordID }, null)
+
+																			</i>
+																			<i class="ion-trash-b blog-post-categories">
+																				@Html.ActionLink("Delete", "Delete", "StorageDocumentLibrary", new { RecordID = item.RecordID }, null)
+																			</i>
+
+																		</td>
+																	</tr>		}
+															</table>
+
+
+
+
+
+														</p>
+
+													</div>
+													<a href="@Url.Action("Create", "StorageDocumentLibrary")" class="btn btn-sm btn-ghost-color"><span>Upload New Documents<i class="ion-checkmark"></i></span></a>
+
+												</div>
+												<hr class="Bottomser">
+											}
+											else
+											{  <div class="post-content">
+
+												<div class="blog-widget blog-tags">
+													<a class="link-to-post" href="#"><h4>Uploaded Documents</h4></a>
+													<p class="blog-post-categories">
+
+														<a href="@Url.Action("Create", "StorageDocumentLibrary")" class="btn btn-sm btn-ghost-color"><span>Upload New Documents<i class="ion-checkmark"></i></span></a>
+
+													</p>
+
+												</div>
+
+											</div>
+
+											}
+										</li>
+										<li></li>
+
+
+									</ul>
+
+								</div>
+							</div>
+						</div>
+						<!-- Second Panel -->
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<button class="panel-title collapsed" data-toggle="collapse" data-target="#collapseTwo">
+									Applied Jobs
+								</button>
+							</div>
+							<div id="collapseTwo" class="panel-collapse collapse">
+								<div class="panel-body">
+									@foreach (var item in JobsAp)
+									{
+											<div class="col-md-6">
+
+												<div class="cbp-item wander lifestyle">
+													<div class="post-date">
+														<h4 class="month">@item.ApplicationDate.Value.ToString("MMM")</h4>
+														<h3 class="day">@item.ApplicationDate.Value.ToString("dd")</h3>
+														<span class="year">@item.ApplicationDate.Value.ToString("yyyy")</span>
+													</div>
+													<a href="blog-post-carousel.html" class="cbp-caption">
+														<div class="cbp-caption-defaultWrap">
+															<img src="img/blog/1.jpg">
+														</div>
+														<div class="cbp-caption-activeWrap">
+															<div class="cbp-l-caption-alignCenter">
+																<div class="cbp-l-caption-body">
+																	<div class="cbp-l-caption-desc"><i class="ion-android-more-horizontal"></i></div>
+																</div>
+															</div>
+														</div>
+													</a>
+													<div class="blog-thumb-desc">
+														<a class="link-to-post" href="blog-post-carousel.html"><h4>@item.JobTitle</h4></a>
+														<p class="blog-post-categories">
+															<span><i class="ion-ios-pricetags-outline"></i></span>
+															<a href="#">Lifestyle</a>
+															<span>,</span>
+															<a href="#">Travel</a>
+														</p>
+														<p class="excerpt">Curabitur quis faucibus odio, nec accumsan erat. Duis id ante convallis magna mattis pulvinar eu ut ipsum. Donec at leo id tortor mattis tempus...</p>
+														<a class="read-more-link btn-appear" href="blog-post-carousel.html"><span>Read More <i class="ion-android-arrow-forward"></i></span></a>
+													</div>
+												</div>
+                                                </div>
+
+									}
+							</div>
+
+							
+
+
+								</div>
+
+
+						
+							</div>
+						</div>
+
+					</div>
+				</div>
+			
+
+			<div class="col-md-3 sidebar">
+
+
+				<div class="blog-widget">
+										<h5 class="subheading">Posted Jobs</h5>
+
+										<ul class="category-list list-icons">
+											@if (ListedJ.Count > 0)
+											{
+												foreach (var item in ListedJ)
+												{
+													<li><a href="/Home/TestingJobstt?JobType=@item.JobTypeID"><i class="ion-ios-arrow-right"></i><b>@item.JobType</b></a> <label class=""><b> (@item.NrJobs)</b></label></li>
+												}
+											}
+											else
+											{
+												<li><label>No listed Jobs posted</label></li>
+
+											}
+
+
+										</ul>
+
+									
+
+										<!-- End Sidebar -->
+										<!-- Sidebar -->
+										@*<div class="col-md-3 sidebar">
+										<div class="blog-widget">
+											<h5>Profile Picture</h5>
+
+										</div>
+										<div class="blog-widget">
+											<h5>Categories</h5>
+											<ul class="category-list list-icons">
+												<li><a href="#"><i class="ion-ios-arrow-right"></i>Travel</a></li>
+												<li><a href="#"><i class="ion-ios-arrow-right"></i>Lifestyle</a></li>
+												<li><a href="#"><i class="ion-ios-arrow-right"></i>Wander</a></li>
+												<li><a href="#"><i class="ion-ios-arrow-right"></i>Graphics</a></li>
+												<li><a href="#"><i class="ion-ios-arrow-right"></i>Other Bits</a></li>
+											</ul>
+										</div>
+										<div class="blog-widget blog-tags">
+											<h5>Tags</h5>
+											<ul class="tags-list">
+												<li><a href="#">Design</a></li>
+												<li><a href="#">Photography</a></li>
+												<li><a href="#">Branding</a></li>
+												<li><a href="#">Videos</a></li>
+												<li><a href="#">Web Design</a></li>
+												<li><a href="#">Apps</a></li>
+												<li><a href="#">Development</a></li>
+											</ul>
+										</div>
+										<div class="blog-widget">
+											<h5>Archives</h5>
+											<ul class="category-list list-icons">
+												<li><a href="#"><i class="ion-ios-arrow-right"></i>April 2016</a></li>
+												<li><a href="#"><i class="ion-ios-arrow-right"></i>March 2016</a></li>
+												<li><a href="#"><i class="ion-ios-arrow-right"></i>February 2016</a></li>
+												<li><a href="#"><i class="ion-ios-arrow-right"></i>January 2016</a></li>
+												<li><a href="#"><i class="ion-ios-arrow-right"></i>December 2015</a></li>
+											</ul>
+										</div>
+										<div class="sidebar-share">
+											<ul class="list-inline">
+												<li><a href="#"><i class="ti-twitter-alt"></i></a></li>
+												<li><a href="#"><i class="ti-facebook"></i></a></li>
+												<li><a href="#"><i class="ti-linkedin"></i></a></li>
+												<li><a href="#"><i class="ti-pinterest-alt"></i></a></li>
+												<li><a href="#"><i class="ti-google"></i></a></li>
+											</ul>
+										</div>
+
+									</div>*@
+										<!-- End Sidebar -->
+									</div>
+                <br />
+                <div class="blog-widget">
+                    <h5 class="subheading">My Profile Progress</h5>
+                    <div class="col-md-12 text-left">
+
+                        @*<div class="buttons-tabs-centered">
+                    <ul id="buttonTabs" class="nav nav-tabs nav-tabs-center">
+                        <li class="active"><a href="#tab-c1" data-toggle="tab">Day One</a></li>
+                        <li class=""><a href="#tab-c2" data-toggle="tab">Day Two</a></li>
+                    </ul>
+                </div>*@
+
+                        <div id="myTabContent2" class="tab-content">
+                            <div class="tab-pane fade active in text-left" id="tab-c1">
+                                <div class="timeline">
+                                    <div class="timeline-block">
+                                        <div class="timeline-bullet"></div>
+                                        <div class="timeline-content">
+                                            <h2>Personal Info</h2>
+                                            <span class="date text-success"><i class="ion-checkmark-circled">Complete</i></span>
+                                        </div>
+                                    </div>
+                                    <div class="timeline-block">
+                                        <div class="timeline-bullet"></div>
+                                        <div class="timeline-content">
+                                            <h2>Education</h2>
+                                                @if (Edu.Count > 0)
+                                                {
+                                            <span class="date text-success"><i class="ion-checkmark-circled">Complete</i></span>
+                                                }
+                                                else
+                                                {<span class="date text-warning"><i class="ion-alert-circled">Incomplete</i></span> 
+                                                }
+                                        </div>
+                                    </div>
+                                    <div class="timeline-block">
+                                        <div class="timeline-bullet"></div>
+                                        <div class="timeline-content">
+                                            <h2>Work Experience</h2>
+                                            @if (CandWork.Count > 0)
+                                            {
+                                                <span class="date text-success"><i class="ion-checkmark-circled">Complete</i></span>
+                                            }
+                                            else
+                                            {<span class="date text-warning"><i class="ion-alert-circled">Incomplete</i></span>
+                                            }
+                                        </div>
+                                    </div>
+
+                                    <div class="timeline-block">
+                                        <div class="timeline-bullet"></div>
+                                        <div class="timeline-content">
+                                            <h2>Language</h2>
+                                            @if (CandLanguage.Count > 0)
+                                            {
+                                                <span class="date text-success"><i class="ion-checkmark-circled">Complete</i></span>
+                                            }
+                                            else
+                                            {<span class="date text-warning"><i class="ion-alert-circled">Incomplete</i></span>
+                                            }
+                                        </div>
+                                    </div>
+
+                                    <div class="timeline-block">
+                                        <div class="timeline-bullet"></div>
+                                        <div class="timeline-content">
+                                            <h2>List of Skills</h2>
+                                            @if (Skill.Count > 0)
+                                            {
+                                                <span class="date text-success"><i class="ion-checkmark-circled">Complete</i></span>
+                                            }
+                                            else
+                                            {<span class="date text-warning"><i class="ion-alert-circled">Incomplete</i></span>
+                                            }
+                                        </div>
+                                    </div>
+
+                                    <div class="timeline-block">
+                                        <div class="timeline-bullet"></div>
+                                        <div class="timeline-content">
+                                            <h2>Uploaded Documents</h2>
+                                            @if (Docs.Count > 0)
+                                            {
+                                                <i></i><span class="date text-success"><i class="ion-checkmark-circled">Loaded</i></span>
+                                            }
+                                            else
+                                            {<span class="date text-warning"><i class="ion-alert-circled">No Documents</i></span>
+                                            }
+                                        </div>
+                                    </div>
+
+                                  
+
+                                </div>
+                            </div>
+
+                            <div class="tab-pane fade text-left" id="tab-c2">
+                                <div class="timeline">
+
+                                    <div class="timeline-block">
+                                        <div class="timeline-bullet"></div>
+                                        <div class="timeline-content">
+                                            <h2>Book Giveaway</h2>
+                                            <span class="date">09:00 AM</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="timeline-block">
+                                        <div class="timeline-bullet"></div>
+                                        <div class="timeline-content">
+                                            <h2>Workshop</h2>
+                                            <p>Alexis Pate</p>
+                                            <span class="date">10:00 AM</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="timeline-block">
+                                        <div class="timeline-bullet"></div>
+                                        <div class="timeline-content">
+                                            <h2>Digital Innovation</h2>
+                                            <p>Linda Whittier</p>
+                                            <span class="date">11:00 AM</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="timeline-block">
+                                        <div class="timeline-bullet"></div>
+                                        <div class="timeline-content">
+                                            <h2>Marketing Strategy</h2>
+                                            <p>Jamie Gossett</p>
+                                            <span class="date">12:30 AM</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="timeline-block">
+                                        <div class="timeline-bullet"></div>
+                                        <div class="timeline-content">
+                                            <h2>Lunch Break</h2>
+                                            <span class="date">02:00 AM</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="timeline-block">
+                                        <div class="timeline-bullet"></div>
+                                        <div class="timeline-content">
+                                            <h2>Q&amp;A Session</h2>
+                                            <p>Kelly Swanson</p>
+                                            <span class="date">03:00 AM</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="timeline-block">
+                                        <div class="timeline-bullet"></div>
+                                        <div class="timeline-content">
+                                            <h2>Closing Thoughts</h2>
+                                            <span class="date">04:00 AM</span>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                        <br />
+                    </div>
+                    </div>
+                </div>
+		
+			</div>
+        </div>
+ 
+</section>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+<script>
+    $(function () {
+        var theDialog = $("#collapseTwo").dialog({
+            autoOpen: true,
+            resizable: false,
+            modal: true,
+            width: 'auto'
+        });
+    });
+       
+  
+           
+        
+
+    
+</script>
+    }

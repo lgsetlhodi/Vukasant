@@ -1,0 +1,1411 @@
+﻿@model IEnumerable<object>
+
+@{
+    List<IQRecruitmentTool.Models.vwCompanyDetailed> CompanyDets = Model.ToList()[0] as List<IQRecruitmentTool.Models.vwCompanyDetailed>;
+    List<IQRecruitmentTool.Models.vwJobs> CompanyJobs = Model.ToList()[1] as List<IQRecruitmentTool.Models.vwJobs>;
+    List<IQRecruitmentTool.Models.CompanyDescription> CompanyDescription = Model.ToList()[2] as List<IQRecruitmentTool.Models.CompanyDescription>;
+    List<IQRecruitmentTool.Models.VWJobType> Jobtype = Model.ToList()[3] as List<IQRecruitmentTool.Models.VWJobType>;
+    List<IQRecruitmentTool.Models.vwJobApplicantsCount> JobAppsCand = Model.ToList()[4] as List<IQRecruitmentTool.Models.vwJobApplicantsCount>;
+
+
+}
+
+
+
+<section class="page-title parallax overlay bg-shortcodes">
+    <div class="page-title-content">
+        <div class="container">
+            <div class="col-sm-12 text-center white">
+                <h1>@ViewBag.NameCompany</h1>
+                <hr class="separator">
+                <h5 class="subheading">TAKING OVER THE WORLD THROUGH PASSION.</h5>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Page Hero -->
+<!-- About -->
+<section class="blog">
+    <div class="container">
+        <div class="row">
+           @if (Request.IsAuthenticated && User.IsInRole("Recruitment Agency"))
+           {
+                   <div class="col-md-12">
+               
+                    <div class="col-md-12 mt40 mb40">
+                        <div class="panel-group accordian-style1 mb0" id="accordion">
+                            <!-- First Panel -->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <button class="panel-title collapsed" data-toggle="collapse" data-target="#collapseOne">
+                                        Company Information
+                                    </button>
+                                </div>
+                                <div id="collapseOne" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <ul class="blog-standard">
+
+                                            <li>
+                                                @foreach (var item in CompanyDets)
+                                                {
+                                                    DateTime DateP = item.UpdateDate.Value;
+                                            <div><b>Last Updated</b></div>
+                                            <div class="side-details">
+                                                <div class="post-date">
+
+                                                    <h4 class="month">@item.UpdateDate.Value.ToString("MMM")</h4>
+                                                    <h3 class="day">@item.UpdateDate.Value.ToString("dd")</h3>
+                                                    <span class="year">@item.UpdateDate.Value.ToString("yyyy")</span>
+                                                </div>
+                                            </div>
+                                            <div class="post-content ">
+
+                                                <div class="post-text">
+                                                    <a class="link-to-post" href="#"><h4>Company Information</h4></a>
+                                                    <p class="blog-post-categories">
+
+
+                                                    </p>
+                                                    <ul class="col-lg-12 list-icons">
+
+                                                        <li>
+                                                            <label>Company Logo</label><span>
+                                                                <i class="ion-edit">
+                                                                     <a href="@Url.Action("Edit", "AvatarCompany", new { CompanyID = CompanyDets.First().CompanyID})" class=" btn btn-sm btn-ghost-color"><span>Upload Image<i class="ion-checkmark"></i></span></a>
+                                                                </i>
+                                                            </span>
+                                                        </li>
+                                                    </ul>
+                                                    @if (item.imgUrl == null || item.imgUrl == "")
+                                                    {<ul class="col-lg-12 list-icons">
+                                                        <li><h5><img src="~/img/backgrounds/VK2.png" class="logo-light" style="width:200px" alt="#"></h5></li>
+                                                    </ul>
+                                                    }
+                                                    else
+                                                    {
+                                                        <ul class="col-lg-12 list-icons">
+                                                            <li><h5><img src="~/Avatars/Company/@item.imgUrl" class="logo-light" style="width:200px" alt="#"></h5></li>
+                                                        </ul>
+                                                    }
+                                                    <ul class="col-lg-6 list-icons">
+                                                        <li><label>Agency Name</label></li>
+                                                    </ul>
+                                                    <ul class="col-lg-6 list-icons">
+                                                        <li><h5>@item.CompanyName</h5></li>
+                                                    </ul>
+                                                    <ul class="col-lg-6 list-icons">
+                                                        <li><label>Registration Number</label></li>
+                                                    </ul>
+                                                    <ul class="col-lg-6 list-icons">
+                                                        <li><h5>@item.CompanyRegistrationNumber</h5></li>
+                                                    </ul>
+                                                    <ul class="col-lg-6 list-icons">
+                                                        <li><label>Telephone Number</label></li>
+                                                    </ul>
+                                                    <ul class="col-lg-6 list-icons">
+                                                        <li><h5>@item.CompanyTelephoneNumber</h5></li>
+                                                    </ul>
+                                                    <ul class="col-lg-6 list-icons">
+                                                        <li><label>Mobile Number</label></li>
+                                                    </ul>
+                                                    <ul class="col-lg-6 list-icons">
+                                                        <li><h5>@item.MobileNumber</h5></li>
+                                                    </ul>
+                                                    <ul class="col-lg-6 list-icons">
+                                                        <li><label>Company Email</label></li>
+                                                    </ul>
+
+                                                    <ul class="col-lg-6 list-icons">
+                                                        <li><h5>@item.CompanyEmail</h5></li>
+                                                    </ul>
+
+                                                    <ul class="col-lg-6 list-icons">
+                                                        <li><label>Province</label></li>
+                                                    </ul>
+                                                    <ul class="col-lg-6 list-icons">
+                                                        <li><h5>@item.ProvinceName</h5></li>
+                                                    </ul>
+                                                    <ul class="col-lg-6 list-icons">
+                                                        <li><label>Region</label></li>
+                                                    </ul>
+                                                    <ul class="col-lg-6 list-icons">
+                                                        <li><h5>@item.Region</h5></li>
+                                                    </ul>
+                                                    <ul class="col-lg-6 list-icons">
+                                                        <li><label>Town</label></li>
+                                                    </ul>
+                                                    <ul class="col-lg-6 list-icons">
+                                                        <li><h5>@item.Town</h5></li>
+                                                    </ul>
+
+                                                    <span>
+                                                        <i class="ion-edit">
+                                                          
+                                                            @Html.ActionLink("Edit", "Edit", new { CompanyID = item.CompanyID, imgUrl=item.imgUrl})
+
+                                                        </i>
+                                                    </span>
+                                                </div>
+
+                                            </div>
+
+                                                }
+                                            </li>
+
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Second Panel -->
+                            <div class="panel panel-default">
+                            <div class="panel-heading">
+                                    <button class="panel-title collapsed" data-toggle="collapse" data-target="#collapseTwo">
+                                        Posted Jobs
+                                    </button>
+                                </div>
+                            <div id="collapseTwo" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <ul class="blog-standard">
+                                            <li>
+                                                @if (CompanyJobs.Count > 0)
+                                                {
+                                                    <div><b>Last Updated</b></div>
+                                                    <div class="side-details">
+                                                        <div class="post-date">
+
+                                                            @foreach (var item in CompanyJobs.Take(1))
+                                                            {
+                                                                <h4 class="month">@item.UpdatedDate.Value.ToString("MMM")</h4>
+                                                                <h3 class="day">@item.UpdatedDate.Value.ToString("dd")</h3>
+                                                                <span class="year">@item.UpdatedDate.Value.ToString("yyyy")</span>
+                                                            }
+                                                        </div>
+                                                    </div>
+                                                }
+                                                else
+                                                {
+
+                                                }
+                                                @if (CompanyJobs.Count > 0)
+                                                {
+                                                    <div class="post-content">
+                                                        @foreach(var item in Jobtype)
+                                                        {
+
+                                                       
+                                                        <div class="blog-widget blog-tags col-lg-12">
+                                                            
+                                                            <a class="link-to-post" href="#"><h4>@item.JobTypeName</h4></a>
+                                                            <p class="blog-post-categories">
+
+
+                                                                <table class="table-condensed table-bordered text-capitalize table-responsive table-striped">
+                                                                   @if(item.JobTypeID==1)
+                                                                   {
+                                                                     <tr>
+                                                                        <th>Job ID</th>
+                                                                        <th>Job Title</th>
+                                                                        <th>Location</th>
+                                                                        <th>Advert Start Date</th>
+                                                                           <th>Actions</th>
+                                                                    </tr>
+                                                                   }
+                                                                   else if (item.JobTypeID == 2)
+                                                                   {
+                                                                    <tr>
+                                                                        <th>Job ID</th>
+                                                                        <th>Intern Job Title</th>
+                                                                        <th>Location</th>
+                                                                        <th>Advert Start Date</th>                                                                       
+                                                                        <th>Actions</th>
+                                                                    </tr>
+
+
+                                                                   }
+                                                                   else if (item.JobTypeID == 3)
+                                                                   {
+                                                                    <tr>
+                                                                        <th>Job ID</th>
+                                                                        <th>Graduate Job Title</th>
+                                                                        <th>Location</th>
+                                                                        <th>Advert Start Date</th>                                                                       
+                                                                        <th>Actions</th>
+                                                                    </tr>
+
+                                                                   }
+                                                                    @foreach (var items in CompanyJobs.Where(x=> x.JobType==item.JobTypeName))
+                                                                    {
+                                                                        <tr>
+                                                                            <td>@items.JobID</td>
+                                                                            <td>@items.JobTitle</td>
+                                                                            <td>@items.ProvinceName, @items.Region, @items.Town</td>
+                                                                         <td>@items.AdvertDateSartDate.Value.ToString("yyyy MMM dd")</td>                                                                      
+                                                                            <td>
+
+                                                                                <i class="ion-edit">
+                                                                                    @Html.ActionLink("Edit / View Details", "Edit", "Jobs", new { CompanyID = CompanyDets.First().CompanyID, JobID = items.JobID }, null)
+
+                                                                                </i>
+                                                                                @*<i class="ion-trash-b blog-post-categories">
+                                                                                    @Html.ActionLink("Details", "Detail", "Jobs", new { JobID = items.JobID }, null)
+                                                                                </i>*@
+
+                                                                            </td>
+                                                                        </tr>
+                                                                    }
+                                                                </table>
+
+
+
+
+
+                                                            </p>
+
+                                                        </div>
+                                                        }
+                                                        <a href="@Url.Action("Create", "Jobs", new { CompanyID = CompanyDets.First().CompanyID })" class="btn btn-sm btn-ghost-color"><span>Add New Job<i class="ion-checkmark"></i></span></a>
+                                                         
+                                                    </div>
+                                                    <hr class="Bottomser">
+                                                }
+                                                else
+                                                {  <div class="post-content">
+
+                                                <div class="blog-widget blog-tags">
+                                                    <a class="link-to-post" href="blog-post-carousel.html"><h4>Jobs</h4></a>
+                                                    <p class="blog-post-categories">
+
+                                                        <a href="@Url.Action("Create", "Jobs", new { CompanyID = CompanyDets.First().CompanyID})" class=" btn btn-sm btn-ghost-color"><span>Add New Job<i class="ion-checkmark"></i></span></a>
+
+                                                    </p>
+
+                                                </div>
+
+                                            </div>
+
+                                                }
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Third Panel -->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <button class="panel-title collapsed" data-toggle="collapse" data-target="#collapseThree">
+                                        Company Description
+                                    </button>
+                                </div>
+                                <div id="collapseThree" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <ul class="blog-standard">
+
+                                            <li>
+                                                @foreach (var item in CompanyDets)
+                                                {
+                                                    DateTime DateP = item.UpdateDate.Value;
+                                                    <div><b>Last Updated</b></div>
+                                                    <div class="side-details">
+                                                        <div class="post-date">
+
+                                                            <h4 class="month">@item.UpdateDate.Value.ToString("MMM")</h4>
+                                                            <h3 class="day">@item.UpdateDate.Value.ToString("dd")</h3>
+                                                            <span class="year">@item.UpdateDate.Value.ToString("yyyy")</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="post-content ">
+
+                                                        <div class="post-text">
+                                                            <a class="link-to-post" href="#"><h4>Company Description</h4></a>
+                                                            <p class="blog-post-categories">
+
+
+                                                            </p>
+                                                            @foreach (var items in CompanyDescription)
+                                                            {
+                                                                <p>@items.Description</p>
+                                                                <i class="ion-edit">
+                                                                    @Html.ActionLink("Edit", "Edit", "CompanyDescriptions", new { DescriptionID = items.DescriptionID, CompanyID = CompanyDets.First().CompanyID }, null)
+
+                                                                </i>
+                                                            }
+                                                           
+                                                        </div>
+
+                                                    </div>
+
+                                                }
+                                            </li>
+
+
+                                        </ul>
+                                       
+                                             </div>
+                                </div>
+                            </div>
+
+                            <!-- Fourth Panel -->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <button class="panel-title collapsed" data-toggle="collapse" data-target="#collapseFourth">
+                                        Candidate Applications
+                                    </button>
+                                </div>
+                                <div id="collapseFourth" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <ul class="blog-standard">
+                                            <li>
+                                                @if (CompanyJobs.Count > 0)
+                                                {
+                                                    <div><b>Last Updated</b></div>
+                                                    <div class="side-details">
+                                                        <div class="post-date">
+
+                                                            @foreach (var item in CompanyJobs.Take(1))
+                                                            {
+                                                                <h4 class="month">@item.UpdatedDate.Value.ToString("MMM")</h4>
+                                                                <h3 class="day">@item.UpdatedDate.Value.ToString("dd")</h3>
+                                                                <span class="year">@item.UpdatedDate.Value.ToString("yyyy")</span>
+                                                            }
+                                                        </div>
+                                                    </div>
+                                                }
+                                                else
+                                                {
+
+                                                }
+                                                @if (JobAppsCand.Count > 0)
+                                                {
+                                                    <div class="post-content">
+                                                        @foreach (var item in Jobtype)
+                                                        {
+
+
+                                                            <div class="blog-widget blog-tags col-lg-12">
+
+                                                                <a class="link-to-post" href="#"><h4>@item.JobTypeName</h4></a>
+                                                                <p class="blog-post-categories">
+
+
+                                                                    <table class="table-condensed table-bordered text-capitalize table-responsive table-striped">
+                                                                        @if (item.JobTypeID == 1)
+                                                                        {
+                                                                            <tr>
+                                                                                <th>Job ID</th>
+                                                                                <th>Job Title</th>                                                                       
+                                                                                <th>Nr Applicants</th>
+                                                                            </tr>
+                                                                        }
+                                                                        else if (item.JobTypeID == 2)
+                                                                        {
+                                                                            <tr>
+                                                                                <th>Job ID</th>
+                                                                                <th>Intern Job Title</th>                                                                         
+                                                                                <th>Nr Applicants</th>
+                                                                            </tr>
+
+
+                                                                        }
+                                                                        else if (item.JobTypeID == 3)
+                                                                        {
+                                                                            <tr>
+                                                                                <th>Job ID</th>
+                                                                                <th>Graduate Job Title</th>                                                                      
+                                                                                <th>Nr Applicants</th>
+                                                                                <th>View Applicant Details</th>
+                                                                            </tr>
+
+                                                                        }
+                                                                        @foreach (var items in JobAppsCand.Where(x => x.JobType == item.JobTypeName))
+                                                                        {
+                                                                            <tr>
+                                                                                <td>@items.JobID</td>
+                                                                                <td>@items.JobTitle</td>
+                                                                                <td>@items.Applicants</td>
+                                                                                <td>
+
+                                                                                    <i class="ion-edit">
+                                                                                        @Html.ActionLink("View", "CandidateDetails", "StorageCompany", new {JobID = items.JobID }, null)
+
+                                                                                    </i>
+                                                     
+
+                                                                                </td>
+                                                                            </tr>
+                                                                        }
+                                                                    </table>
+
+
+
+
+
+                                                                </p>
+
+                                                            </div>
+                                                        }
+                                
+
+                                                    </div>
+                                                    <hr class="Bottomser">
+                                                }
+                                                else
+                                                {  <div class="post-content">
+
+                                                    <div class="blog-widget blog-tags">
+                                                        <a class="link-to-post" href="blog-post-carousel.html"><h4>Jobs</h4></a>
+                                                        <p class="blog-post-categories">
+
+                                                           <h3>There are no Applicants on your job posts</h3>
+
+                                                        </p>
+
+                                                    </div>
+
+                                                </div>
+
+                                                }
+                                            </li>
+                                        </ul>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <hr class="Bottomser">
+
+                </div>
+           }
+           else if (Request.IsAuthenticated && User.IsInRole("Company"))
+           {
+            <!-- Sidebar -->
+                    <div class="col-md-12 mt40 mb40">
+                <div class="panel-group accordian-style1 mb0" id="accordion">
+                    <!-- First Panel -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <button class="panel-title collapsed" data-toggle="collapse" data-target="#collapseOne">
+                                Company Information
+                            </button>
+                        </div>
+                        <div id="collapseOne" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <ul class="blog-standard">
+
+                                    <li>
+                                        @foreach (var item in CompanyDets)
+                                        {
+                                            DateTime DateP = item.UpdateDate.Value;
+                                            <div><b>Last Updated</b></div>
+                                            <div class="side-details">
+                                                <div class="post-date">
+
+                                                    <h4 class="month">@item.UpdateDate.Value.ToString("MMM")</h4>
+                                                    <h3 class="day">@item.UpdateDate.Value.ToString("dd")</h3>
+                                                    <span class="year">@item.UpdateDate.Value.ToString("yyyy")</span>
+                                                </div>
+                                            </div>
+                                            <div class="post-content ">
+
+                                                <div class="post-text">
+                                                    <a class="link-to-post" href="#"><h4>Company Information</h4></a>
+                                                    <p class="blog-post-categories">
+
+
+                                                    </p>
+                                                    <ul class="col-lg-12 list-icons">
+
+                                                        <li>
+                                                            <label>Company Logo</label><span>
+                                                                <i class="ion-edit">
+                                                                    <a href="@Url.Action("Edit", "AvatarCompany", new { CompanyID = CompanyDets.First().CompanyID})" class=" btn btn-sm btn-ghost-color"><span>Upload Image<i class="ion-checkmark"></i></span></a>
+                                                                </i>
+                                                            </span>
+                                                        </li>
+                                                    </ul>
+                                                    @if (item.imgUrl == null || item.imgUrl == "")
+                                                    {<ul class="col-lg-12 list-icons">
+                                                        <li><h5><img src="~/img/backgrounds/VK2.png" class="logo-light" style="width:200px" alt="#"></h5></li>
+                                                    </ul>
+                                                    }
+                                                    else
+                                                    {
+                                                        <ul class="col-lg-12 list-icons">
+                                                            <li><h5><img src="~/Avatars/Company/@item.imgUrl" class="logo-light" style="width:200px" alt="#"></h5></li>
+                                                        </ul>
+                                                    }
+                                                    <ul class="col-lg-6 list-icons">
+                                                        <li><label>Company Name</label></li>
+                                                    </ul>
+                                                    <ul class="col-lg-6 list-icons">
+                                                        <li><h5>@item.CompanyName</h5></li>
+                                                    </ul>
+                                                    <ul class="col-lg-6 list-icons">
+                                                        <li><label>Registration Number</label></li>
+                                                    </ul>
+                                                    <ul class="col-lg-6 list-icons">
+                                                        <li><h5>@item.CompanyRegistrationNumber</h5></li>
+                                                    </ul>
+                                                    <ul class="col-lg-6 list-icons">
+                                                        <li><label>Telephone Number</label></li>
+                                                    </ul>
+                                                    <ul class="col-lg-6 list-icons">
+                                                        <li><h5>@item.CompanyTelephoneNumber</h5></li>
+                                                    </ul>
+                                                    <ul class="col-lg-6 list-icons">
+                                                        <li><label>Mobile Number</label></li>
+                                                    </ul>
+                                                    <ul class="col-lg-6 list-icons">
+                                                        <li><h5>@item.MobileNumber</h5></li>
+                                                    </ul>
+                                                    <ul class="col-lg-6 list-icons">
+                                                        <li><label>Company Email</label></li>
+                                                    </ul>
+
+                                                    <ul class="col-lg-6 list-icons">
+                                                        <li><h5>@item.CompanyEmail</h5></li>
+                                                    </ul>
+
+                                                    <ul class="col-lg-6 list-icons">
+                                                        <li><label>Province</label></li>
+                                                    </ul>
+                                                    <ul class="col-lg-6 list-icons">
+                                                        <li><h5>@item.ProvinceName</h5></li>
+                                                    </ul>
+                                                    <ul class="col-lg-6 list-icons">
+                                                        <li><label>Region</label></li>
+                                                    </ul>
+                                                    <ul class="col-lg-6 list-icons">
+                                                        <li><h5>@item.Region</h5></li>
+                                                    </ul>
+                                                    <ul class="col-lg-6 list-icons">
+                                                        <li><label>Town</label></li>
+                                                    </ul>
+                                                    <ul class="col-lg-6 list-icons">
+                                                        <li><h5>@item.Town</h5></li>
+                                                    </ul>
+
+                                                    <span>
+                                                        <i class="ion-edit">
+                                                            @Html.ActionLink("Edit", "Edit", new { CompanyID = item.CompanyID, imgUrl=item.imgUrl})
+
+                                                        </i>
+                                                    </span>
+                                                </div>
+
+                                            </div>
+
+                                        }
+                                    </li>
+
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Second Panel -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <button class="panel-title collapsed" data-toggle="collapse" data-target="#collapseTwo">
+                                Posted Jobs
+                            </button>
+                        </div>
+                        <div id="collapseTwo" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <ul class="blog-standard">
+                                    <li>
+                                        @if (CompanyJobs.Count > 0)
+                                        {
+                                            <div><b>Last Updated</b></div>
+                                                    <div class="side-details">
+                                                        <div class="post-date">
+
+                                                            @foreach (var item in CompanyJobs.Take(1))
+                                                            {
+                                                                <h4 class="month">@item.UpdatedDate.Value.ToString("MMM")</h4>
+                                                                <h3 class="day">@item.UpdatedDate.Value.ToString("dd")</h3>
+                                                                <span class="year">@item.UpdatedDate.Value.ToString("yyyy")</span>
+                                                            }
+                                                        </div>
+                                                    </div>
+                                        }
+                                        else
+                                        {
+
+                                        }
+                                        @if (CompanyJobs.Count > 0)
+                                        {
+                                            <div class="post-content">
+                                                @foreach (var item in Jobtype)
+                                                {
+
+
+                                                    <div class="blog-widget blog-tags">
+
+                                                        <a class="link-to-post" href="#"><h4>@item.JobTypeName</h4></a>
+                                                        <p class="blog-post-categories">
+
+
+                                                            <table class="table-condensed table-bordered text-capitalize table-responsive table-striped">
+                                                                @if (item.JobTypeID == 1)
+                                                                {
+                                                                    <tr>
+                                                                        <th>Job ID</th>
+                                                                        <th>Job Title</th>
+                                                                        <th>Location</th>
+                                                                        <th>Advert Start Date</th>                                                                   
+                                                                        <th>Actions</th>
+                                                                    </tr>
+                                                                }
+                                                                else if (item.JobTypeID == 2)
+                                                                {
+                                                                    <tr>
+                                                                        <th>Job ID</th>
+                                                                        <th>Intern Job Title</th>
+                                                                        <th>Location</th>
+                                                                        <th>Advert Start Date</th>                                                                 
+                                                                        <th>Actions</th>
+                                                                    </tr>
+
+
+                                                                }
+                                                                else if (item.JobTypeID == 3)
+                                                                {
+                                                                    <tr>
+                                                                        <th>Job ID</th>
+                                                                        <th>Graduate Job Title</th>
+                                                                        <th>Location</th>
+                                                                        <th>Advert Start Date</th>                                                                    
+                                                                        <th>Actions</th>
+                                                                    </tr>
+
+                                                                }
+                                                                @foreach (var items in CompanyJobs.Where(x => x.JobType == item.JobTypeName))
+                                                                {
+                                                                    <tr>
+                                                                        <td>@items.JobID</td>
+                                                                        <td>@items.JobTitle</td>
+                                                                        <td>@items.ProvinceName, @items.Region, @items.Town</td>
+                                                                        <td>@items.AdvertDateSartDate.Value.ToString("yyyy MMM dd")</td>
+                                                                        <td>
+
+                                                                            <i class="ion-edit">
+                                                                                @Html.ActionLink("Edit / View Details", "Edit", "Jobs", new { CompanyID = CompanyDets.First().CompanyID, JobID = items.JobID }, null)
+
+                                                                            </i>
+                                                                            @*<i class="ion-trash-b blog-post-categories">
+                                                                                @Html.ActionLink("Details", "Detail", "Jobs", new { JobID = items.JobID }, null)
+                                                                            </i>*@
+
+                                                                        </td>
+                                                                    </tr>
+                                                                }
+                                                            </table>
+
+
+
+
+
+                                                        </p>
+
+                                                    </div>
+                                                }
+                                                <a href="@Url.Action("Create", "Jobs", new { CompanyID = CompanyDets.First().CompanyID })" class="btn btn-sm btn-ghost-color"><span>Add New Job<i class="ion-checkmark"></i></span></a>
+
+                                            </div>
+                                                    <hr class="Bottomser">
+                                        }
+                                        else
+                                        {  <div class="post-content">
+
+                                                    <div class="blog-widget blog-tags">
+                                                        <a class="link-to-post" href="blog-post-carousel.html"><h4>Jobs</h4></a>
+                                                        <p class="blog-post-categories">
+
+                                                            <a href="@Url.Action("Create", "Jobs", new { CompanyID = CompanyDets.First().CompanyID})" class=" btn btn-sm btn-ghost-color"><span>Add New Job<i class="ion-checkmark"></i></span></a>
+
+                                                        </p>
+
+                                                    </div>
+
+                                                </div>
+
+                                        }
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- Third Panel -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <button class="panel-title collapsed" data-toggle="collapse" data-target="#collapseThree">
+                                Company Description
+                            </button>
+                        </div>
+                        <div id="collapseThree" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <ul class="blog-standard">
+
+                                    <li>
+                                        @foreach (var item in CompanyDets)
+                                        {
+                                            DateTime DateP = item.UpdateDate.Value;
+                                            <div><b>Last Updated</b></div>
+                                                    <div class="side-details">
+                                                        <div class="post-date">
+
+                                                            <h4 class="month">@item.UpdateDate.Value.ToString("MMM")</h4>
+                                                            <h3 class="day">@item.UpdateDate.Value.ToString("dd")</h3>
+                                                            <span class="year">@item.UpdateDate.Value.ToString("yyyy")</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="post-content ">
+
+                                                        <div class="post-text">
+                                                            <a class="link-to-post" href="#"><h4>Company Description</h4></a>
+                                                            <p class="blog-post-categories">
+
+
+                                                            </p>
+                                                            @foreach (var items in CompanyDescription)
+                                                            {
+                                                                <p>@items.Description</p>
+                                                                <i class="ion-edit">
+                                                                    @Html.ActionLink("Edit", "Edit", "CompanyDescriptions", new { DescriptionID = items.DescriptionID, CompanyID = CompanyDets.First().CompanyID }, null)
+
+                                                                </i>
+                                                            }
+
+                                                        </div>
+
+                                                    </div>
+
+                                        }
+                                    </li>
+
+
+                                </ul>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Fourth Panel -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <button class="panel-title collapsed" data-toggle="collapse" data-target="#collapseFourth">
+                                Candidate Applications
+                            </button>
+                        </div>
+                        <div id="collapseFourth" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <ul class="blog-standard">
+                                    <li>
+                                        @if (CompanyJobs.Count > 0)
+                                        {
+                                            <div><b>Last Updated</b></div>
+                                                    <div class="side-details">
+                                                        <div class="post-date">
+
+                                                            @foreach (var item in CompanyJobs.Take(1))
+                                                            {
+                                                                <h4 class="month">@item.UpdatedDate.Value.ToString("MMM")</h4>
+                                                                <h3 class="day">@item.UpdatedDate.Value.ToString("dd")</h3>
+                                                                <span class="year">@item.UpdatedDate.Value.ToString("yyyy")</span>
+                                                            }
+                                                        </div>
+                                                    </div>
+                                        }
+                                        else
+                                        {
+
+                                        }
+                                        @if (JobAppsCand.Count > 0)
+                                        {
+                                            <div class="post-content">
+                                                @foreach (var item in Jobtype)
+                                                {
+
+
+                                                    <div class="blog-widget blog-tags col-lg-12">
+
+                                                        <a class="link-to-post" href="#"><h4>@item.JobTypeName</h4></a>
+                                                        <p class="blog-post-categories">
+
+
+                                                            <table class="table-condensed table-bordered text-capitalize table-responsive table-striped">
+                                                                @if (item.JobTypeID == 1)
+                                                                {
+                                                                    <tr>
+                                                                        <th>Job ID</th>
+                                                                        <th>Job Title</th>
+                                                                        <th>Nr Applicants</th>
+                                                                    </tr>
+                                                                }
+                                                                else if (item.JobTypeID == 2)
+                                                                {
+                                                                    <tr>
+                                                                        <th>Job ID</th>
+                                                                        <th>Intern Job Title</th>
+                                                                        <th>Nr Applicants</th>
+                                                                    </tr>
+
+
+                                                                }
+                                                                else if (item.JobTypeID == 3)
+                                                                {
+                                                                    <tr>
+                                                                        <th>Job ID</th>
+                                                                        <th>Graduate Job Title</th>
+                                                                        <th>Nr Applicants</th>
+                                                                        <th>View Applicant Details</th>
+                                                                    </tr>
+
+                                                                }
+                                                                @foreach (var items in JobAppsCand.Where(x => x.JobType == item.JobTypeName))
+                                                                {
+                                                                    <tr>
+                                                                        <td>@items.JobID</td>
+                                                                        <td>@items.JobTitle</td>
+                                                                        <td>@items.Applicants</td>
+                                                                        <td>
+
+                                                                            <i class="ion-edit">
+                                                                                @Html.ActionLink("View", "CandidateDetails", "StorageCompany", new { JobID = items.JobID }, null)
+
+                                                                            </i>
+
+
+                                                                        </td>
+                                                                    </tr>
+                                                                }
+                                                            </table>
+
+
+
+
+
+                                                        </p>
+
+                                                    </div>
+                                                }
+
+
+                                            </div>
+                                                    <hr class="Bottomser">
+                                        }
+                                        else
+                                        {  <div class="post-content">
+
+                                                    <div class="blog-widget blog-tags">
+                                                        <a class="link-to-post" href="blog-post-carousel.html"><h4>Jobs</h4></a>
+                                                        <p class="blog-post-categories">
+
+                                                            <h3>There are no Applicants on your job posts</h3>
+
+                                                        </p>
+
+                                                    </div>
+
+                                                </div>
+
+                                        }
+                                    </li>
+                                </ul>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+
+
+
+                   
+                </div>
+            </div>
+                    <hr class="Bottomser">
+           }
+           else if (Request.IsAuthenticated && User.IsInRole("Small Business"))
+           {
+                    <div class="col-md-12 mt40 mb40">
+                <div class="panel-group accordian-style1 mb0" id="accordion">
+                    <!-- First Panel -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <button class="panel-title collapsed" data-toggle="collapse" data-target="#collapseOne">
+                                Company Information
+                            </button>
+                        </div>
+                        <div id="collapseOne" class="panel-collapse collapse">
+                            <div class="panel-body">
+    <ul class="blog-standard">
+
+        <li>
+            @foreach (var item in CompanyDets)
+            {
+                DateTime DateP = item.UpdateDate.Value;
+                <div><b>Last Updated</b></div>
+                                            <div class="side-details">
+                                                <div class="post-date">
+
+                                                    <h4 class="month">@item.UpdateDate.Value.ToString("MMM")</h4>
+                                                    <h3 class="day">@item.UpdateDate.Value.ToString("dd")</h3>
+                                                    <span class="year">@item.UpdateDate.Value.ToString("yyyy")</span>
+                                                </div>
+                                            </div>
+                                            <div class="post-content ">
+
+                                                <div class="post-text">
+                                                    <a class="link-to-post" href="#"><h4>Company Information</h4></a>
+                                                    <p class="blog-post-categories">
+
+
+                                                    </p>
+                                                    <ul class="col-lg-12 list-icons">
+
+                                                        <li>
+                                                            <label>Company Logo</label><span>
+                                                                <i class="ion-edit">
+                                                                    <a href="@Url.Action("Edit", "AvatarCompany", new { CompanyID = CompanyDets.First().CompanyID})" class=" btn btn-sm btn-ghost-color"><span>Upload Image<i class="ion-checkmark"></i></span></a>
+
+                                                                </i>
+                                                            </span>
+                                                        </li>
+                                                    </ul>
+                                                    @if (item.imgUrl == null || item.imgUrl == "")
+                                                    {<ul class="col-lg-12 list-icons">
+                                                        <li><h5><img src="~/img/backgrounds/VK2.png" class="logo-light" style="width:200px" alt="#"></h5></li>
+                                                    </ul>
+                                                    }
+                                                    else
+                                                    {
+                                                        <ul class="col-lg-12 list-icons">
+                                                            <li><h5><img src="~/Avatars/Company/@item.imgUrl" class="logo-light" style="width:200px" alt="#"></h5></li>
+                                                        </ul>
+                                                    }
+                                                    <ul class="col-lg-6 list-icons">
+                                                        <li><label>Your Business Name</label></li>
+                                                    </ul>
+                                                    <ul class="col-lg-6 list-icons">
+                                                        <li><h5>@item.CompanyName</h5></li>
+                                                    </ul>
+                                                    <ul class="col-lg-6 list-icons">
+                                                        <li><label>Registration Number</label></li>
+                                                    </ul>
+                                                    <ul class="col-lg-6 list-icons">
+                                                        <li><h5>@item.CompanyRegistrationNumber</h5></li>
+                                                    </ul>
+                                                    <ul class="col-lg-6 list-icons">
+                                                        <li><label>Business Sector</label></li>
+                                                    </ul>
+                                                    <ul class="col-lg-6 list-icons">
+                                                        <li><h5>@item.Industry</h5></li>
+                                                    </ul>
+                                                    <ul class="col-lg-6 list-icons">
+                                                        <li><label>Telephone Number</label></li>
+                                                    </ul>
+                                                    <ul class="col-lg-6 list-icons">
+                                                        <li><h5>@item.CompanyTelephoneNumber</h5></li>
+                                                    </ul>
+                                                    <ul class="col-lg-6 list-icons">
+                                                        <li><label>Mobile Number</label></li>
+                                                    </ul>
+                                                    <ul class="col-lg-6 list-icons">
+                                                        <li><h5>@item.MobileNumber</h5></li>
+                                                    </ul>
+                                                    <ul class="col-lg-6 list-icons">
+                                                        <li><label>Company Email</label></li>
+                                                    </ul>
+
+                                                    <ul class="col-lg-6 list-icons">
+                                                        <li><h5>@item.CompanyEmail</h5></li>
+                                                    </ul>
+
+                                                    <ul class="col-lg-6 list-icons">
+                                                        <li><label>Head Count</label></li>
+                                                    </ul>
+
+                                                    <ul class="col-lg-6 list-icons">
+                                                        <li><h5>@item.CompanySize</h5></li>
+                                                    </ul>
+
+                                                    <ul class="col-lg-6 list-icons">
+                                                        <li><label>Province</label></li>
+                                                    </ul>
+                                                    <ul class="col-lg-6 list-icons">
+                                                        <li><h5>@item.ProvinceName</h5></li>
+                                                    </ul>
+                                                    <ul class="col-lg-6 list-icons">
+                                                        <li><label>Region</label></li>
+                                                    </ul>
+                                                    <ul class="col-lg-6 list-icons">
+                                                        <li><h5>@item.Region</h5></li>
+                                                    </ul>
+                                                    <ul class="col-lg-6 list-icons">
+                                                        <li><label>Town</label></li>
+                                                    </ul>
+                                                    <ul class="col-lg-6 list-icons">
+                                                        <li><h5>@item.Town</h5></li>
+                                                    </ul>
+                                   
+                                                    <ul class="col-lg-6 list-icons">
+                                                        <li><label>BEE Level</label></li>
+                                                    </ul>
+                                                    <ul class="col-lg-6 list-icons">
+                                                        <li><h5>@item.BEELevelName</h5></li>
+                                                    </ul>
+                                                    <ul class="col-lg-6 list-icons">
+                                                        <li><label>Company Street</label></li>
+                                                    </ul>
+                                                    <ul class="col-lg-6 list-icons">
+                                                        <li><h5>@item.CompanyAddress</h5></li>
+                                                    </ul>
+
+                                                    <span>
+                                                        <i class="ion-edit">
+                                                            @Html.ActionLink("Edit", "Edit", new { CompanyID = item.CompanyID, imgUrl=item.imgUrl})
+                                                     
+                                                        </i>
+                                                    </span>
+                                                </div>
+
+                                            </div>
+
+                                        }
+                                    </li>
+
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Second Panel -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <button class="panel-title collapsed" data-toggle="collapse" data-target="#collapseTwo">
+                                Posted Jobs
+                            </button>
+                        </div>
+                        <div id="collapseTwo" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <ul class="blog-standard">
+                                    <li>
+                                        @if (CompanyJobs.Count > 0)
+                                        {
+                                            <div><b>Last Updated</b></div>
+                                                    <div class="side-details">
+                                                        <div class="post-date">
+
+                                                            @foreach (var item in CompanyJobs.Take(1))
+                                                            {
+                                                                <h4 class="month">@item.UpdatedDate.Value.ToString("MMM")</h4>
+                                                                <h3 class="day">@item.UpdatedDate.Value.ToString("dd")</h3>
+                                                                <span class="year">@item.UpdatedDate.Value.ToString("yyyy")</span>
+                                                            }
+                                                        </div>
+                                                    </div>
+                                        }
+                                        else
+                                        {
+
+                                        }
+                                        @if (CompanyJobs.Count > 0)
+                                        {
+                                            <div class="post-content">
+                                                @foreach (var item in Jobtype)
+                                                {
+
+
+                                                    <div class="blog-widget blog-tags">
+
+                                                        <a class="link-to-post" href="#"><h4>@item.JobTypeName</h4></a>
+                                                        <p class="blog-post-categories">
+
+
+                                                            <table class="table-condensed table-bordered text-capitalize table-responsive table-striped">
+                                                                @if (item.JobTypeID == 1)
+                                                                {
+                                                                    <tr>
+                                                                        <th>Job ID</th>
+                                                                        <th>Job Title</th>
+                                                                        <th>Location</th>
+                                                                        <th>Advert Start Date</th>                                                                   
+                                                                        <th>Actions</th>
+                                                                    </tr>
+                                                                }
+                                                                else if (item.JobTypeID == 2)
+                                                                {
+                                                                    <tr>
+                                                                        <th>Job ID</th>
+                                                                        <th>Intern Job Title</th>
+                                                                        <th>Location</th>
+                                                                        <th>Advert Start Date</th>                                                                        
+                                                                        <th>Actions</th>
+                                                                    </tr>
+
+
+                                                                }
+                                                                else if (item.JobTypeID == 3)
+                                                                {
+                                                                    <tr>
+                                                                        <th>Job ID</th>
+                                                                        <th>Graduate Job Title</th>
+                                                                        <th>Location</th>
+                                                                        <th>Advert Start Date</th>                                                                
+                                                                        <th>Actions</th>
+                                                                    </tr>
+
+                                                                }
+                                                                @foreach (var items in CompanyJobs.Where(x => x.JobType == item.JobTypeName))
+                                                                {
+                                                                    <tr>
+                                                                        <td>@items.JobID</td>
+                                                                        <td>@items.JobTitle</td>
+                                                                        <td>@items.ProvinceName, @items.Region, @items.Town</td>
+                                                                        <td>@items.AdvertDateSartDate.Value.ToString("yyyy MMM dd")</td>                                                                    
+                                                                        <td>
+
+                                                                            <i class="ion-edit">
+                                                                                @Html.ActionLink("Edit / View Details", "Edit", "Jobs", new { CompanyID = CompanyDets.First().CompanyID, JobID = items.JobID }, null)
+
+                                                                            </i>
+                                                                            @*<i class="ion-trash-b blog-post-categories">
+                                                                                @Html.ActionLink("Details", "Detail", "Jobs", new { JobID = items.JobID }, null)
+                                                                            </i>*@
+
+                                                                        </td>
+                                                                    </tr>
+                                                                }
+                                                            </table>
+
+
+
+
+
+                                                        </p>
+
+                                                    </div>
+                                                }
+                                                <a href="@Url.Action("Create", "Jobs", new { CompanyID = CompanyDets.First().CompanyID })" class="btn btn-sm btn-ghost-color"><span>Add New Job<i class="ion-checkmark"></i></span></a>
+
+                                            </div>
+                                                    <hr class="Bottomser">
+                                        }
+                                        else
+                                        {  <div class="post-content">
+
+                                                    <div class="blog-widget blog-tags">
+                                                        <a class="link-to-post" href="blog-post-carousel.html"><h4>Jobs</h4></a>
+                                                        <p class="blog-post-categories">
+
+                                                            <a href="@Url.Action("Create", "Jobs", new { CompanyID = CompanyDets.First().CompanyID})" class=" btn btn-sm btn-ghost-color"><span>Add New Job<i class="ion-checkmark"></i></span></a>
+
+                                                        </p>
+
+                                                    </div>
+
+                                                </div>
+
+                                        }
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- Third Panel -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <button class="panel-title collapsed" data-toggle="collapse" data-target="#collapseThree">
+                                Company Description
+                            </button>
+                        </div>
+                        <div id="collapseThree" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <ul class="blog-standard">
+
+                                    <li>
+                                        @foreach (var item in CompanyDets)
+                                        {
+                                            DateTime DateP = item.UpdateDate.Value;
+                                            <div><b>Last Updated</b></div>
+                                                    <div class="side-details">
+                                                        <div class="post-date">
+
+                                                            <h4 class="month">@item.UpdateDate.Value.ToString("MMM")</h4>
+                                                            <h3 class="day">@item.UpdateDate.Value.ToString("dd")</h3>
+                                                            <span class="year">@item.UpdateDate.Value.ToString("yyyy")</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="post-content ">
+
+                                                        <div class="post-text">
+                                                            <a class="link-to-post" href="#"><h4>Company Description</h4></a>
+                                                            <p class="blog-post-categories">
+
+
+                                                            </p>
+                                                            @foreach (var items in CompanyDescription)
+                                                            {
+                                                                <p>@items.Description</p>
+                                                                <i class="ion-edit">
+                                                                    @Html.ActionLink("Edit", "Edit", "CompanyDescriptions", new { DescriptionID = items.DescriptionID, CompanyID = CompanyDets.First().CompanyID }, null)
+
+                                                                </i>
+                                                            }
+
+                                                        </div>
+
+                                                    </div>
+
+                                        }
+                                    </li>
+
+
+                                </ul>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Fourth Panel -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <button class="panel-title collapsed" data-toggle="collapse" data-target="#collapseFourth">
+                                Candidate Applications
+                            </button>
+                        </div>
+                        <div id="collapseFourth" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <ul class="blog-standard">
+                                    <li>
+                                        @if (CompanyJobs.Count > 0)
+                                        {
+                                            <div><b>Last Updated</b></div>
+                                                    <div class="side-details">
+                                                        <div class="post-date">
+
+                                                            @foreach (var item in CompanyJobs.Take(1))
+                                                            {
+                                                                <h4 class="month">@item.UpdatedDate.Value.ToString("MMM")</h4>
+                                                                <h3 class="day">@item.UpdatedDate.Value.ToString("dd")</h3>
+                                                                <span class="year">@item.UpdatedDate.Value.ToString("yyyy")</span>
+                                                            }
+                                                        </div>
+                                                    </div>
+                                        }
+                                        else
+                                        {
+
+                                        }
+                                        @if (JobAppsCand.Count > 0)
+                                        {
+                                            <div class="post-content">
+                                                @foreach (var item in Jobtype)
+                                                {
+
+
+                                                    <div class="blog-widget blog-tags col-lg-12">
+
+                                                        <a class="link-to-post" href="#"><h4>@item.JobTypeName</h4></a>
+                                                        <p class="blog-post-categories">
+
+
+                                                            <table class="table-condensed table-bordered text-capitalize table-responsive table-striped">
+                                                                @if (item.JobTypeID == 1)
+                                                                {
+                                                                    <tr>
+                                                                        <th>Job ID</th>
+                                                                        <th>Job Title</th>
+                                                                        <th>Nr Applicants</th>
+                                                                    </tr>
+                                                                }
+                                                                else if (item.JobTypeID == 2)
+                                                                {
+                                                                    <tr>
+                                                                        <th>Job ID</th>
+                                                                        <th>Intern Job Title</th>
+                                                                        <th>Nr Applicants</th>
+                                                                    </tr>
+
+
+                                                                }
+                                                                else if (item.JobTypeID == 3)
+                                                                {
+                                                                    <tr>
+                                                                        <th>Job ID</th>
+                                                                        <th>Graduate Job Title</th>
+                                                                        <th>Nr Applicants</th>
+                                                                        <th>View Applicant Details</th>
+                                                                    </tr>
+
+                                                                }
+                                                                @foreach (var items in JobAppsCand.Where(x => x.JobType == item.JobTypeName))
+                                                                {
+                                                                    <tr>
+                                                                        <td>@items.JobID</td>
+                                                                        <td>@items.JobTitle</td>
+                                                                        <td>@items.Applicants</td>
+                                                                        <td>
+
+                                                                            <i class="ion-edit">
+                                                                                @Html.ActionLink("View", "CandidateDetails", "StorageCompany", new { JobID = items.JobID }, null)
+
+                                                                            </i>
+
+
+                                                                        </td>
+                                                                    </tr>
+                                                                }
+                                                            </table>
+
+
+
+
+
+                                                        </p>
+
+                                                    </div>
+                                                }
+
+
+                                            </div>
+                                                    <hr class="Bottomser">
+                                        }
+                                        else
+                                        {  <div class="post-content">
+
+                                                    <div class="blog-widget blog-tags">
+                                                        <a class="link-to-post" href="blog-post-carousel.html"><h4>Jobs</h4></a>
+                                                        <p class="blog-post-categories">
+
+                                                            <h3>There are no Applicants on your job posts</h3>
+
+                                                        </p>
+
+                                                    </div>
+
+                                                </div>
+
+                                        }
+                                    </li>
+                                </ul>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+
+
+                </div>
+            </div>
+            <hr class="Bottomser">
+           }
+           
+            <!-- End Sidebar -->
+        </div>
+    </div>
+</section>

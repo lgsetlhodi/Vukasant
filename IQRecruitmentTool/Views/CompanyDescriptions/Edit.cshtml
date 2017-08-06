@@ -1,0 +1,45 @@
+﻿@model IQRecruitmentTool.Models.CompanyDescription
+
+
+
+@using (Html.BeginForm())
+{
+	@Html.AntiForgeryToken()
+
+	<section class="checkout">
+		<div class="container">
+			<div class="row">
+
+				<div class="col-md-8 mr-auto text-center mt40 mb40">
+					<div class="section-heading">
+						<h5>CompanyDescription</h5>
+						<hr class="
+                            ">
+					</div>
+					@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+					@Html.HiddenFor(model => model.DescriptionID)
+
+
+					<div class="col-md-4">
+						@Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+					</div>
+					<div class="col-md-7">
+						@Html.TextAreaFor(model => model.Description, new { htmlAttributes = new { @class = "Input-text" } })
+					</div>
+					<div class="col-md-1"
+						 @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                    </div>
+
+					<div>
+					<button type="submit" value="Create" class="btn btn-lg btn-primary btn-square btn-appear">Submit</button>
+						</div>
+					</div>
+				</div>
+</section>
+	
+					
+   }
+
+    @section Scripts {
+	@Scripts.Render("~/bundles/jqueryval")
+   }

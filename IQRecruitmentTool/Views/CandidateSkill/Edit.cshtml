@@ -1,0 +1,59 @@
+﻿@model IQRecruitmentTool.Models.CandidateSkill
+
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <section class="checkout">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-8 mr-auto text-left mt40 mb40">
+                    <div class="section-heading">
+                        <h5>Edit Skill</h5>
+                        <hr class="
+
+                            ">
+                    </div>
+
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="col-lg-6 ">
+                        <label>Skill</label>
+                    </div>
+                    <div class="col-lg-6 ">
+                        @Html.EditorFor(model => model.Skill, new { htmlAttributes = new { @class = "input-text", placeholder = "Skill" } })
+                        @Html.ValidationMessageFor(model => model.Skill, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-lg-6 ">
+                        <label>Experience</label>
+                    </div>
+                    <div class="col-lg-6 ">
+                        @Html.EditorFor(model => model.Experience, new { htmlAttributes = new { @class = "input-text", placeholder = "Number Of Years" } })
+                        @Html.ValidationMessageFor(model => model.Experience, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="col-lg-6 ">
+                        <label>Competency</label>
+                    </div>
+                    <div class="col-lg-6 ">
+                        @Html.DropDownListFor(model => model.Competency, (SelectList)ViewBag.Competency, new { htmlAttributes = new { @class = "input-text" } })
+                        @Html.ValidationMessageFor(model => model.Competency, "", new { @class = "text-danger" })
+                    </div>
+
+
+
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 mr-auto text-center mt40 mb40">
+            <button type="submit" value="Save" class=" btn btn-lg btn-primary btn-square btn-appear">Submit</button>
+        </div>
+
+    </section>
+
+}

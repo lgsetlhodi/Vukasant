@@ -1,0 +1,24 @@
+﻿@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right VerticalAlign" }))
+    {
+    @Html.AntiForgeryToken()
+
+
+            @Html.ActionLink("Logged in as " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { @Class = "btn btn-md btn-ghost-color", title = "Manage" })
+        if (Request.IsAuthenticated && User.IsInRole("Candidate (Job Seeker)"))
+        {
+            @Html.ActionLink("Your Profile", "Create", "CandidatePersonalInfProfile", routeValues: null, htmlAttributes: new { @Class = "btn btn-md btn-ghost-color", title = "Manage" })
+        }
+        else
+        {
+            @Html.ActionLink("Your Profile", "Create", "StorageCompany", routeValues: null, htmlAttributes: new { @Class = "btn btn-md btn-ghost-color", title = "Manage" })
+        }
+        <a class="btn btn-md btn-ghost-color" href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
+    }
+}
+else
+{
+   
+}

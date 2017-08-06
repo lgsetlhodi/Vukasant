@@ -1,0 +1,86 @@
+﻿@model IEnumerable<object>
+
+@{
+    List<IQRecruitmentTool.Models.vwJobs> JobApp = Model.ToList()[0] as List<IQRecruitmentTool.Models.vwJobs>;
+
+
+}
+<section class="blog">
+    <div class="container">
+        <div class="row">
+
+            <!-- Blog Content -->
+            <div class="col-md-7">
+                @foreach (var item in JobApp)
+                {
+
+                <div class="blog-post">
+                   
+                    @if (item.imgUrl == null || item.imgUrl == "")
+                    {
+                        <img src="~/img/backgrounds/VK2.png" style="width:200px;height:180px" alt="#">
+                    }
+                    else
+                    {
+                        <img src="~/Avatars/Company/@item.imgUrl" style="width:200px" alt="#">
+                    }
+                    <a class="link-to-post" href="#"><h3>@item.JobTitle</h3></a>
+                    <p class="blog-post-categories">
+                        <span><i class=""></i></span>
+                        <a class="blog-quote" href="">Company: @item.CompanyName</a>
+               
+                        <br />
+                        
+                        <a href="#"><b>Job Type: @item.JobType</b></a>
+                        <br />
+                        @if(item.RemunerationType==1)
+                        { 
+                        <a href="#"><b>@item.RateName: @item.RemunerationFrom - @item.RemunerationTo</b></a>
+                        }
+                        else if (item.RemunerationType == 2)
+                        {
+                            <a href="#"><b>@item.RateName: @item.CustomRemuneration</b></a>
+                        }
+                        else
+                        { <a href="#"><b>@item.RateName: Not Disclosed</b></a>
+
+
+                        }
+                            <br />
+                            <a href="#"><b>Province: @item.ProvinceName</b></a>
+                            <br />
+                            <a href="#"><b>Region: @item.Region</b></a>
+                            <br />
+                            <a href="#"><b>Town: @item.Town</b></a>
+
+
+
+
+
+</p>
+                    <h4>Job Description</h4>
+                 
+                    <p>@item.JobDescription</p>
+                    <br />
+                    <h4>Candidate Requirements</h4>
+
+                    <p>@item.CandidateRequirements</p>
+                <br />
+                    <div class="col-md-6 half-right">
+                        <a class=" btn btn-xs btn-primary btn-square" href="/CandidatePersonalInfProfile/JobApplication?JobID=@item.JobID"><span>Apply <i class="ion-android-arrow-forward"></i></span></a>
+                    </div>
+                </div>
+                }
+
+
+                <!-- Comments -->
+          
+
+        </div>
+    </div>
+        </div>
+</section>
+
+@section scripts{
+
+    }

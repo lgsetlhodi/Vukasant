@@ -1,0 +1,105 @@
+﻿@model IEnumerable<object>
+
+@{
+    List<IQRecruitmentTool.Models.vwJobs> Jobs = Model.ToList()[0] as List<IQRecruitmentTool.Models.vwJobs>;
+
+
+}
+<section class="hero-fullwidth parallax bg-img-5">
+    <div class="hero-container container">
+        <div class="hero-content text-center">
+            <div class="col-sm-12 mr-auto text-center mb60">
+                <h2 class="white">@Jobs.First().JobType  <strong><i class="icon-magnifying-glass"></i></strong></h2>
+                <hr class="separator">
+
+            </div>
+
+
+
+
+            <div class="home-blog-filters">
+                @*<div class="portfolio-filters-center cbp-l-filters-button" id="js-filters">
+                    <div data-filter=".2" class="cbp-filter-item-active cbp-filter-item">
+                        All
+                    </div>
+                    <div data-filter=".1" class="cbp-filter-item">
+                        Standard Jobs
+                    </div>
+                    <div data-filter=".2" class="cbp-filter-item">
+                        Internships
+                    </div>
+                    <div data-filter=".3" class="cbp-filter-item">
+                        Graduate Programmes
+                    </div>
+
+                </div>*@
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- End Page Hero -->
+<!-- Blog -->
+<section id="home-blog" class="bg-grey">
+    <div class="container-fluid">
+        <div class="row home-blog-grid">
+            <div class="blog-grid blog-columns cbp" id="blog-grid">
+                @foreach(var item in Jobs)
+                { 
+                <div class="cbp-item wander col-md-4 @item.JobTypeID">
+                    <div class="post-date">
+                        <h4 class="month">@item.AdvertDateSartDate.Value.ToString("MMM")</h4>
+                        <h3 class="day">@item.AdvertDateSartDate.Value.ToString("dd")</h3>
+                        <span class="year">@item.AdvertDateSartDate.Value.ToString("yyyy")</span>
+                    </div>
+                    <a href="" class="cbp-caption center-block">
+                        <div class="center-block">
+                           
+                        </div>
+                        <div class="cbp-caption-activeWrap">
+                            <div class="cbp-l-caption-alignCenter">
+                                <div class="cbp-l-caption-body">
+                                    <div class="cbp-l-caption-desc"><i class="ion-android-more-horizontal"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <div class="blog-thumb-desc">
+                        @if(item.imgUrl== null || item.imgUrl=="")
+                        {
+                        <img src="~/img/backgrounds/VK2.png" style="width:200px;height:180px" alt="#">
+                        }
+                        else
+                        {
+                            <img src="~/Avatars/Company/@item.imgUrl" style="width:200px" alt="#">
+                        }
+                        <a class="link-to-post" href=""><h4>@item.JobTitle</h4></a>
+                        <br/>
+                        <a class="blog-quote" href="">@item.CompanyName</a>
+                        <p class="blog-post-categories">
+                            <br />
+                            <span><i class="icon-attachment"></i></span>
+                            <a href="#"><b>Job Type: @item.JobType</b></a>
+                            
+                        </p>
+                        <p style="height:120px" class="excerpt">@item.SmallDesc ...</p>
+                        <div class="col-md-6 half-left">
+                            <a class="btn btn-xs btn-dark btn-square" href="/CandidatePersonalInfProfile/JobDetail?JobID=@item.JobID"><span>Read More <i class="ion-android-arrow-forward"></i></span></a>
+                        </div>
+                        <div class="col-md-6 half-right">
+                            <a class=" btn btn-xs btn-primary btn-square" href="/CandidatePersonalInfProfile/JobApplication?JobID=@item.JobID"><span>Apply <i class="ion-android-arrow-forward"></i></span></a>
+                        </div>
+                        </div>
+                </div>
+                }
+                
+                </div>
+            </div>
+        </div>
+    
+    
+</section>
+
+@section scripts{
+   
+}

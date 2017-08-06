@@ -1,0 +1,151 @@
+﻿@model IQRecruitmentTool.Models.CandidateWorkExperience
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <section class="checkout">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-8 mr-auto text-left mt40 mb40">
+                    <div class="section-heading">
+                        <h5>Work Experience</h5>
+
+                        <hr class="">
+                    </div>
+
+                    <div class="col-lg-4 ">
+                        <label>Job Title</label>
+                    </div>
+                    <div class="col-lg-7 ">
+                        @Html.EditorFor(model => model.JobTitle, new { htmlAttributes = new { @class = "input-text", placeholder = "Job Title" } })
+                    </div>
+                    <div class="col-lg-1 ">
+                        @Html.ValidationMessageFor(model => model.JobTitle, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-lg-4">
+                        <label>Company</label>
+                    </div>
+                    <div class="col-lg-7">
+                        @Html.EditorFor(model => model.CompanyName, new { htmlAttributes = new { @class = "input-text", placeholder = "Company Name" } })
+                    </div>
+                    <div class="col-lg-1">
+                        @Html.ValidationMessageFor(model => model.CompanyName, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-lg-4 leftalignlbl">
+                        <label>Sector Category</label>
+                    </div>
+                    <div class="col-lg-7">
+                        @Html.DropDownListFor(model => model.Sector, (SelectList)ViewBag.Category, "Please select industry type", new { htmlAttributes = new { @class = "" } })
+                    </div>
+                    <div class="col-lg-1">
+                        @Html.ValidationMessageFor(model => model.Sector, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-lg-4">
+                        <label>Employment Basis</label>
+                    </div>
+                    <div class="col-lg-7">
+                        @Html.DropDownListFor(model => model.EmploymentBasis, (SelectList)ViewBag.EmploymentBasis, "Select Employment Basis", new { htmlAttributes = new { @class = "input-text", placeholder = "Employment Basis? e.g Permanent" } })
+                    </div>
+                    <div class="col-lg-1">
+                        @Html.ValidationMessageFor(model => model.EmploymentBasis, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-lg-4">
+                        <label>Description Of Duties</label>
+                    </div>
+                    <div class="col-lg-7">
+                        @Html.TextAreaFor(model => model.DescriptionOfDuties, new { htmlAttributes = new { @class = "input-text", placeholder = "Description of duties" } })
+                    </div>
+                    <div class="col-lg-1">
+                        @Html.ValidationMessageFor(model => model.DescriptionOfDuties, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-lg-4">
+                        <label>Start Date</label>
+                    </div>
+                    <div class="col-lg-7">
+                        @Html.EditorFor(model => model.JobStartDate, new { htmlAttributes = new { @class = "input-text datepicker", placeholder = "Start Date" } })
+                    </div>
+                    <div class="col-lg-1">
+                        @Html.ValidationMessageFor(model => model.JobStartDate, "", new { @class = "text-danger datepicker" })
+                    </div>
+                    <div class="col-lg-4">
+                        <label>Currently Employment</label>
+                    </div>
+                    <div class="col-lg-7">
+                        @Html.CheckBoxFor(model => model.CurrentEmployment, new { htmlAttributes = new { @class = "checkbox", onchange = "valueChanged();" } })
+                    </div>
+                    <div id="divhide1" class="col-lg-4">
+                        <label id="labelEnd">End Date</label>
+                    </div>
+                    <div id="divhide2" class="col-lg-7">
+                        @Html.EditorFor(model => model.JobEndate, new { htmlAttributes = new { @class = "datepicker input-text", placeholder = "End Date" } })
+                    </div>
+                    <div class="col-lg-1">
+						<label class="text-danger">@ViewBag.errorDate </label>
+                    </div>
+                    <div class="col-lg-6">
+                        <label class="text-danger">@ViewBag.CurrentEmployment</label>
+                    </div>
+					</div>
+                 
+
+                </div>
+            </div>
+        <div class="col-md-6 mr-auto text-center mt40 mb40">
+            <button type="submit" value="Create" class=" btn btn-lg btn-primary btn-square btn-appear">Submit</button>
+            <div />
+        </div>
+    </section>
+
+
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+                                            $(function () { // will trigger when the document is ready
+                                                $("#JobStartDate").datepicker(); //Initialise any date pickers
+                                            });
+
+                                            $(function () { // will trigger when the document is ready
+                                                $("#JobEndate").datepicker(); //Initialise any date pickers
+                                            });
+
+                                            $(document).ready(function () {
+
+                                                //Uncheck the CheckBox initially
+
+                                                $("#CurrentEmployment").removeAttr("checked");
+
+                                                // Initially, Hide the SSN textbox when Web Form is loaded
+
+                                                $("#JobEndate").show();
+
+                                                $("#CurrentEmployment").change(function () {
+
+                                                    if (this.checked) {
+
+                                                        $("#divhide2").hide();
+                                                        $("#divhide1").hide();
+
+                                                    }
+
+                                                    else {
+
+                                                        $("#divhide2").show();
+                                                        $("#divhide1").show();
+
+                                                    }
+
+                                                });
+
+                                            });
+
+    </script>
+
+
+
+}

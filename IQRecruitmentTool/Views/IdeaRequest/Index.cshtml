@@ -1,0 +1,293 @@
+﻿@model IQRecruitmentTool.ViewModel.IdeasViewModel
+@{
+    ViewBag.Title = "Index";
+}
+
+<br />
+<br />
+<br />
+<br />
+
+<!-- Portfolio -->
+<section class="blog col-sm-12">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12 col-sm-offset-4">
+
+                <div data-filter="*" class="col-sm-8">
+                    <div class="row">
+                        <div class="col-sm-6">
+
+                            <div id="searchArea">
+                                <input id="txtSearchIdeas" type="text" class="form-control" placeholder="Search for ideas...">
+                            </div><!-- /searchArea -->
+
+                        </div><!-- /.col-sm-6 -->
+                        <span class="col-sm-1 search-button-area">
+                            <button id="btnSearch" class="btn search-button" type="button">Search</button>
+                        </span>
+                    </div><!-- /.row -->
+                </div>
+            </div>
+            <br />
+            <br />
+            <br />
+
+
+
+            <div class="container-fluid">
+
+            @if (Model.IdeaRequestsPending.Any())
+            {
+                <!--PENDING REQUESTS<-->
+                <div class="row">
+                    <div class="col-sm-12">
+                            <h4 class="page-header"><i class="ion-load-a"></i>&nbsp;Pending Requests</h4>
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <td>#</td>
+                                    <td>Idea Owner</td>
+                                    <td>Idea Title</td>
+                                    <td>Date Created</td>
+                                    <td>Request Type</td>
+                                    <td>Request Status</td>
+                                    <td>Request Date</td>
+                                    <td>Action</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{var counter1 = 0;}
+                                @foreach (var item in Model.IdeaRequestsPending)
+                                {
+                                    counter1++;
+                                    <tr>
+                                        <td>@counter1</td>
+                                        <td><a href="#">@item.IdeaCreatorName</a></td>
+                                        <td><a href="#">@item.Title</a></td>
+                                        <td>@item.IdeaCreatedDateTime</td>
+                                        <td>@item.RequestType</td>
+                                        <td>@item.Status</td>
+                                        <td>@item.IdeaRequestCreatedDateTime</td>
+                                        <td>
+                                            @if (item.Status == "New" && item.IsRevoked == false || item.IsRevoked == null)
+                                            {
+                                                <button id="@item."
+                                                        name="Revoke"
+                                                        value="@item.IdeaRequestId"
+                                                        type="button"
+                                                        class="btn btn-xs btn-dark btn-square btnActionRequest">
+                                                    <i class="ion-ios-undo"></i>
+                                                    &nbsp;Revoke</button>
+                                            }
+                                            else if (item.Status == "New" && item.IsRevoked == true)
+                                            {
+                                                <button id="@item."
+                                                        name="Resubmit"
+                                                        value="@item.IdeaRequestId"
+                                                        type="button"
+                                                        class="btn btn-xs btn-dark btn-square btnActionRequest">
+                                                    <i class="ion-ios-undo"></i>
+                                                    &nbsp;Revoked
+                                                </button>
+                                            }
+                                            <button id="@item.IdeaRequesterId"
+                                                                name="cancel" 
+                                                                value="@item.IdeaRequestId"
+                                                                type="button"
+                                                                class="btn btn-xs btn-danger btn-square btnActionRequest">
+                                                            <i class="ion-ios-trash"></i>
+                                                            &nbsp;Cancel
+                                                        </button>
+                                                        
+                                        </td>
+                                    </tr>
+
+                                }
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td>#</td>
+                                    <td>Idea Owner</td>
+                                    <td>Idea Title</td>
+                                    <td>Date Created</td>
+                                    <td>Request Type</td>
+                                    <td>Request Status</td>
+                                    <td>Request Date</td>
+                                    <td>Action</td>
+                                </tr>
+                           </tfoot>
+
+                        </table>
+
+                    </div>
+                </div> <!--.row-->
+                }
+
+
+            @if (Model.IdeaRequestsFund.Any())
+            {
+
+                <!--FUNDED REQUESTS<-->
+                <div class="row">
+                    <div class="col-sm-12">
+                            <h4 class="page-header"><i class="ion-card"></i>&nbsp;Beneficiaries</h4>
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <td>#</td>
+                                    <td>Idea Owner</td>
+                                    <td>Idea Title</td>
+                                    <td>Date Created</td>
+                                    <td>Request Type</td>
+                                    <td>Request Status</td>
+                                    <td>Request Date</td>
+                                    <td>Action</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{var counter2 = 0;}
+                                @foreach (var item in Model.IdeaRequestsFund)
+                                {
+                                    counter2++;
+                                    <tr>
+                                        <td>@counter2</td>
+                                        <td><a href="#">@item.IdeaCreatorName</a></td>
+                                        <td><a href="#">@item.Title</a></td>
+                                        <td>@item.IdeaCreatedDateTime</td>
+                                        <td>@item.RequestType</td>
+                                        <td>@item.Status</td>
+                                        <td>@item.IdeaRequestCreatedDateTime</td>
+                                        <td>
+                                            @if (item.Status == "New")
+                                            {
+                                                <button id="@item.IdeaRequesterId"
+                                                        name="Revoke" 
+                                                        value="@item.IdeaRequestId"
+                                                        type="button"
+                                                        class="btn btn-xs btn-dark btn-square btnActionRequest">
+                                                    <i class="ion-ios-undo"></i>
+                                                    &nbsp;Revoke
+                                                </button>
+                                                        <button id="@item.IdeaRequesterId"
+                                                                name="cancel"
+                                                                value="@item.IdeaRequestId"
+                                                                type="button"
+                                                                class="btn btn-xs btn-danger btn-square btnActionRequest">
+                                                            <i class="ion-ios-trash"></i>
+                                                            &nbsp;Cancel
+                                                        </button>
+                                            }
+
+                                        </td>
+                                    </tr>
+
+                                }
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td>#</td>
+                                    <td>Idea Owner</td>
+                                    <td>Idea Title</td>
+                                    <td>Date Created</td>
+                                    <td>Request Type</td>
+                                    <td>Request Status</td>
+                                    <td>Request Date</td>
+                                    <td>Action</td>
+                                </tr>
+                            </tfoot>
+
+                        </table>
+
+                    </div>
+                </div> <!--.row-->
+        }
+
+            @if (Model.IdeaRequestsCollabo.Any())
+            {
+
+                <!--COLLABORATION REQUESTS<-->
+                <div class="row">
+                    <div class="col-sm-12">                     
+                            <h4 class="page-header"><i class="ion-ios-people"></i>&nbsp;Collaborations</h4>                     
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <td>#</td>
+                                    <td>Idea Owner</td>
+                                    <td>Idea Title</td>
+                                    <td>Date Created</td>
+                                    <td>Request Type</td>
+                                    <td>Request Status</td>
+                                    <td>Request Date</td>
+                                    <td>Action</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{var counter3 = 0;}
+                                @foreach (var item in Model.IdeaRequestsCollabo)
+                                {
+                                    counter3++;
+                                    <tr>
+                                        <td>@counter3</td>
+                                        <td><a href="#">@item.IdeaCreatorName</a></td>
+                                        <td><a href="#">@item.Title</a></td>
+                                        <td>@item.IdeaCreatedDateTime</td>
+                                        <td>@item.RequestType</td>
+                                        <td>@item.Status</td>
+                                        <td>@item.IdeaRequestCreatedDateTime</td>
+                                        <td>
+                                            @if (item.Status == "Accepted")
+                                            {
+                                                <button id="@item.IdeaRequesterId"
+                                                        name="Revoke" 
+                                                        value="@item.IdeaRequestId"
+                                                        type="button"
+                                                        class="btn btn-xs btn-dark btn-square btnActionRequest">
+                                                    <i class="ion-email"></i>
+                                                    &nbsp;Message
+                                                </button>
+                                                <button id="@item.IdeaRequesterId"
+                                                        name="cancel" 
+                                                        value="@item.IdeaRequestId"
+                                                        type="button"
+                                                        class="btn btn-xs btn-danger btn-square btnActionRequest">
+                                                    <i class="ion-ios-trash"></i>
+                                                    &nbsp;Cancel
+                                                </button>
+                                            }
+
+                                        </td>
+                                    </tr>
+
+                                }
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td>#</td>
+                                    <td>Idea Owner</td>
+                                    <td>Idea Title</td>
+                                    <td>Date Created</td>
+                                    <td>Request Type</td>
+                                    <td>Request Status</td>
+                                    <td>Request Date</td>
+                                    <td>Action</td>
+                                </tr>
+                            </tfoot>
+
+                        </table>
+
+                    </div>
+                </div> <!--.row-->
+            }
+
+            </div> <!--.container-fluid-->
+
+            <br />
+            <br />
+            <br />
+
+        </div>
+    </div>
+
+</section>

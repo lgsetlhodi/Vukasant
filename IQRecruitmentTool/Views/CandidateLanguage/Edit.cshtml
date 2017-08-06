@@ -1,0 +1,66 @@
+﻿@model IQRecruitmentTool.Models.CandidateLanguage
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <section class="checkout">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-8 mr-auto text-center mt40 mb40">
+                    <div class="section-heading">
+                        <h5>Edit Language Competency</h5>
+                        <hr class="
+                            ">
+                    </div>
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                   
+                   @Html.HiddenFor(x => x.Language)
+                    <div class="col-sm-12">
+                        <h5>@ViewBag.Language</h5>
+                    </div>
+                
+                    <div class="half-left col-sm-6">
+                        @Html.LabelFor(m => m.Read, new { @class = "col-md-2 control-label" })
+                    </div>
+                    <div class="half-right col-sm-6">
+                        @Html.DropDownListFor(model => model.Read, (SelectList)ViewBag.Decisionst, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Read, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="half-left col-sm-6">
+                        @Html.LabelFor(m => m.Write, new { @class = "col-md-2 control-label" })
+                    </div>
+
+                    <div class="half-right col-sm-6">
+                        @Html.DropDownListFor(model => model.Write, (SelectList)ViewBag.Decisionst, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Write, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="half-left col-sm-6">
+                        @Html.LabelFor(m => m.Speak, new { @class = "col-md-2 control-label" })
+                    </div>
+
+                    <div class="half-right col-sm-6">
+                        @Html.DropDownListFor(model => model.Speak, (SelectList)ViewBag.Decisionst, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Speak, "", new { @class = "text-danger" })
+                    </div>
+
+
+                    <button type="submit" value="Save" class="btn btn-lg btn-primary btn-square btn-appear">Submit</button>
+                   
+     
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

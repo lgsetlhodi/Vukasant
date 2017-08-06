@@ -1,0 +1,176 @@
+﻿@model IQRecruitmentTool.Models.AssessQuestionStorage
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<section class="checkout">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-8 mr-auto text-left mt40 mb40">
+                <div class="section-heading">
+                    <h5>Assessment Sections @ViewBag.SectioName</h5>
+                    <hr class="">
+                </div>
+
+
+
+                <div class="col-md-12">
+
+                    <div class="col-md-2">
+                        <label id="lblQuestion">Add Question</label>
+                    </div>
+                    <div class="col-md-4">
+                        <textarea cols="40" rows="5" type="text" id="Question" name="Question" class="form-control"></textarea>
+                    </div>
+                    <div class="col-md-4">
+                        @Html.DropDownList("Drop3", (SelectList)ViewBag.QuestionTypeDropDown, "Select Question Type", new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                    <div class="col-md-2">
+                        <button id="Create" type="submit" value="Creategg" class=" btn btn-lg btn-primary btn-square btn-appear">Add</button>
+                    </div>
+                </div>
+                <table id="QuestionsList" class="table list-icons">
+                    <tbody></tbody>
+
+                </table>
+                @*<div id="NextQ" class="col-md-12 text-center">
+                        <a href="" class="btn btn-lg btn-ghost-color btn-circle">Next: Add Questions to Sections</a>
+                    </div>*@
+            </div>
+
+
+
+        </div>
+    </div>
+    <label id="lblid">@ViewBag.SectionID</label>
+
+
+</section>
+
+
+@section scripts{
+    <script>
+        $("#lblid").hide();
+        //$("#NextQ").hide();
+        $(document).ready(function () {
+            GetQuestions();
+        });
+
+
+
+        function getSections() {
+            $.ajax({
+                url: '@Url.Action("GetQuestions")',
+                type: 'POST',
+                datatype: 'json',
+                success: function (data) {
+                    var total = data.length;
+                        var rows = "";
+                        $.each(data, function (i, item) {
+                            $.each(data, function (i, item) {
+                                if (item.QuestionTypeID = 1) {
+                                    rows += '<tr>'
+                                    rows += '<td class="col-md-6"><i class="ion-arrow-right-c"></i>' + item.Question + '</td>' + '<td class="col-md-2"><button type="submit" id="Remove" value="' + item.QuestionID + '" class="btn btn-xs btn-danger btn-circle">Remove</button></td>' + '<td class="col-md-2"><button type="submit" id="Addq" value="' + item.QuestionID + '" class="btn btn-xs btn-info btn-circle">Add Multiple Choice Options</button></td>'
+                                    rows += '</tr>'
+                                    rows += '<br />'
+                                    $("#QuestionsList tbody").html(rows);
+                                }
+                                else if (item.QuestionTypeID = 3) {
+                                    rows += '<tr>'
+                                    rows += '<td class="col-md-6"><i class="ion-arrow-right-c"></i>' + item.Question + '</td>' + '<td class="col-md-2"><button type="submit" id="Remove" value="' + item.QuestionID + '" class="btn btn-xs btn-danger btn-circle">Remove</button></td>' + '<td class="col-md-2"><button type="submit" id="Addq" value="' + item.QuestionID + '" class="btn btn-xs btn-info btn-circle">Add Possible Optional</button></td>'
+                                    rows += '</tr>'
+                                    rows += '<br />'
+                                    $("#QuestionsList tbody").html(rows);
+
+                                }
+                                else {
+                                    rows += '<tr>'
+                                    rows += '<td class="col-md-6"><i class="ion-arrow-right-c"></i>' + item.Question + '</td>' + '<td class="col-md-2"><button type="submit" id="Remove" value="' + item.QuestionID + '" class="btn btn-xs btn-danger btn-circle">Remove</button></td>' + '<td class="col-md-2"><button type="submit" id="Addq" value="' + item.QuestionID + '" class="btn btn-xs btn-info btn-circle">Add Answer</button></td>'
+                                    rows += '</tr>'
+                                    rows += '<br />'
+                                    $("#QuestionsList tbody").html(rows);
+
+                                }
+                            });
+                        });
+
+                        //if (total > 0)
+                        //{
+                        //    $("#NextQ").show();
+
+                        //}
+                        //else
+                        //{
+                        //    $("#NextQ").hide();
+                        //}
+
+
+                },
+                error: function (err) {
+                    alert("Error:" + err.responseText);
+
+                }
+
+            });
+        }
+
+    </script>
+    <script>
+    $("#Create").click(function (e) {
+        var data = {
+            Question: $("#Question").val(),
+            QuestionTypeID: $("#QuestionTypeID").val(),
+            SectionID: $("#lblid").text()
+        }
+        var row = $(this).closest('tr');
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("SaveQuestions")',
+            data: data ,
+            success: function (data) {
+                row.append();
+                GetQuestions();
+                $("#Question").val("");
+
+
+            },
+            error: function (err) {
+                alert("Error:" + err.responseText);
+
+            }
+        });
+    })
+    </script>
+
+
+    <script>
+    $(document).on("click", "#Remove", function (e) {
+
+
+        var datas = {
+            QuestionID: $(this).val()
+        }
+        var row = $(this).closest('tr');
+
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("DeleteQuestion")',
+            data: datas ,
+            success: function (datas) {
+                row.remove();
+                getSections();
+
+
+            },
+            error: function (err) {
+                alert("Error:" + err.responseText);
+
+            }
+        });
+    })
+    </script>
+}
